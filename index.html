@@ -1593,6 +1593,79 @@ s.<span class="fn">push</span>(<span class="nm">20</span>)
             </div>
           </div>
 
+          <div class="topic-block">
+            <h3>Algorithm Efficiency &amp; Flowchart Conversion</h3>
+            <p>From <strong>test P23</strong>: "A solution to a problem is said to be efficient if:" → It is solved within the <strong>required resource constraints</strong> (time, memory, processing power). An algorithm is correct but may be inefficient — both correctness and efficiency matter.</p>
+            <h4>Flowchart to Pseudocode (Test P7 — Direct Exam Question)</h4>
+            <p>You may be asked to convert a flowchart to pseudocode. Work through the flowchart's decision diamonds and process boxes methodically:</p>
+            <div class="tree-visual">
+  Flowchart given in exam:
+    START
+    x ← 3, y ← 2
+    IF x > 2y THEN
+      x ← y
+      y ← y²
+    ELSE
+      x ← x + 2
+    END IF
+    OUTPUT x, y
+    END
+
+  Answer (Pseudocode):
+    BEGIN
+      SET x = 3
+      SET y = 2
+      IF x > (2 * y) THEN
+        SET x = y       // x = 2
+        SET y = y * y   // y = 4
+      ELSE
+        SET x = x + 2   // x = 5
+      END IF
+      PRINT x, y
+    END
+
+  Since x=3, 2y=4, 3 > 4 is FALSE → ELSE branch: x = 3+2 = 5, y stays 2
+  Output: x=5, y=2</div>
+            <div class="callout callout-exam"><strong>EXAM STRATEGY:</strong> When converting a flowchart to pseudocode: (1) identify START/END, (2) map decision diamonds to IF/ELSE, (3) map process boxes to assignment statements, (4) trace through with given values to verify your pseudocode produces the correct output.</div>
+          </div>
+
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Introduction &amp; ADTs</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: A solution to a problem is said to be efficient if: <span style="font-size:11px;color:var(--text3);">(Test P23)</span></p>
+            <p style="color:var(--red2);">✗ Common wrong answers: "It runs in O(1) time" / "It uses the least memory"</p>
+            <p style="color:var(--green2);">✓ Correct: It is solved within the required time and resource constraints</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Efficiency is relative to requirements. A solution is efficient if it meets both time AND space constraints for the given problem. An O(n²) algorithm may be efficient for n=100 but inefficient for n=10,000,000.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Convert the flowchart to pseudocode (x=3, y=2; if x &gt; 2y then x=x*y, else x=x+y; output x, y). <span style="font-size:11px;color:var(--text3);">(Test P7)</span></p>
+            <p style="color:var(--green2);">✓ Pseudocode:</p>
+            <pre class="code-block">BEGIN
+  x ← 3
+  y ← 2
+  IF x &gt; 2 * y THEN
+    x ← x * y
+  ELSE
+    x ← x + y
+  END IF
+  OUTPUT x, y
+END</pre>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;"><strong>Trace:</strong> 2y = 2×2 = 4. x=3, 3 &gt; 4 is FALSE → ELSE branch: x = 3+2 = 5, y remains 2. Output: x=5, y=2.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What are the benefits of using Abstract Data Types (ADTs) in programming? <span style="font-size:11px;color:var(--text3);">(Theory Assignment Q1b)</span></p>
+            <p style="color:var(--green2);">✓ Benefits of ADTs:</p>
+            <ul style="color:var(--text2);font-size:13px;margin-bottom:14px;">
+              <li><strong>Abstraction / Information hiding:</strong> Users interact through a defined interface; implementation details are hidden. Can change implementation without affecting users.</li>
+              <li><strong>Modularity:</strong> ADT can be developed, tested, and debugged independently. Promotes code reuse across projects.</li>
+              <li><strong>Correctness:</strong> ADT operations can be formally verified. Separation of concerns reduces bugs.</li>
+              <li><strong>Maintainability:</strong> Changes to internal implementation don't break external code that uses the ADT.</li>
+              <li><strong>Example:</strong> A Stack ADT with push/pop/peek operations — users don't need to know if it's array-based or linked-list-based.</li>
+            </ul>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What characteristics define a good algorithm? <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+            <p style="color:var(--green2);">✓ A good algorithm must be: (1) Correct — produces the right output for all valid inputs. (2) Finite — terminates in a finite number of steps. (3) Definite — each step is unambiguous and precisely defined. (4) Effective — each step can be executed in finite time. (5) Efficient — uses minimal time and space resources.</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:0;">Additionally: (6) Input — takes zero or more well-defined inputs. (7) Output — produces at least one well-defined output. These are the classic algorithm properties from Knuth's definition.</p>
+          </div>
+
           <div class="quiz-block">
             <div class="quiz-title">Quick Quiz — Section 1</div>
             <div id="quiz-s1"></div>
@@ -1712,6 +1785,50 @@ s.<span class="fn">push</span>(<span class="nm">20</span>)
           </div>
 
           <div class="topic-block">
+            <h3>Big-O Growth Rate — Visual Comparison (n = 16)</h3>
+            <p>Each bar shows how many "operations" each complexity class requires for n=16 elements. The difference becomes catastrophic at larger n.</p>
+            <div class="diagram">
+              <svg viewBox="0 0 560 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace" font-size="10">
+                <!-- Labels column -->
+                <text x="10" y="30" fill="#9090a8" font-size="11">O(1)</text>
+                <text x="10" y="58" fill="#9090a8" font-size="11">O(log n)</text>
+                <text x="10" y="86" fill="#a78bfa" font-size="11">O(n)</text>
+                <text x="10" y="114" fill="#f59e0b" font-size="11">O(n log n)</text>
+                <text x="10" y="142" fill="#ef4444" font-size="11">O(n²)</text>
+                <text x="10" y="170" fill="#dc2626" font-size="11">O(2ⁿ)</text>
+                <!-- Bar backgrounds -->
+                <rect x="90" y="16" width="460" height="22" rx="3" fill="rgba(255,255,255,0.03)" stroke="#2a2a38" stroke-width="1"/>
+                <rect x="90" y="44" width="460" height="22" rx="3" fill="rgba(255,255,255,0.03)" stroke="#2a2a38" stroke-width="1"/>
+                <rect x="90" y="72" width="460" height="22" rx="3" fill="rgba(255,255,255,0.03)" stroke="#2a2a38" stroke-width="1"/>
+                <rect x="90" y="100" width="460" height="22" rx="3" fill="rgba(255,255,255,0.03)" stroke="#2a2a38" stroke-width="1"/>
+                <rect x="90" y="128" width="460" height="22" rx="3" fill="rgba(255,255,255,0.03)" stroke="#2a2a38" stroke-width="1"/>
+                <rect x="90" y="156" width="460" height="22" rx="3" fill="rgba(255,255,255,0.03)" stroke="#2a2a38" stroke-width="1"/>
+                <!-- O(1) bar: value=1, scale so max fits. Max=65536, bar width=460. Scale=460/65536≈0.007 -->
+                <rect x="90" y="16" width="3" height="22" rx="2" fill="#10b981"/>
+                <text x="97" y="31" fill="#6ee7b7" font-size="10">1 op</text>
+                <!-- O(log 16)=4 -->
+                <rect x="90" y="44" width="28" height="22" rx="2" fill="#10b981"/>
+                <text x="122" y="59" fill="#6ee7b7" font-size="10">4 ops</text>
+                <!-- O(16)=16 -->
+                <rect x="90" y="72" width="112" height="22" rx="2" fill="#a78bfa"/>
+                <text x="206" y="87" fill="#c4b5fd" font-size="10">16 ops</text>
+                <!-- O(16 log 16)=64 -->
+                <rect x="90" y="100" width="225" height="22" rx="2" fill="#f59e0b"/>
+                <text x="319" y="115" fill="#fcd34d" font-size="10">64 ops</text>
+                <!-- O(16²)=256 — cap at full width -->
+                <rect x="90" y="128" width="400" height="22" rx="2" fill="#ef4444"/>
+                <text x="494" y="143" fill="#fca5a5" font-size="10">256</text>
+                <!-- O(2^16)=65536 — show as full + overflow indicator -->
+                <rect x="90" y="156" width="458" height="22" rx="2" fill="#dc2626"/>
+                <text x="94" y="171" fill="#fff" font-size="9" font-weight="700">65,536 ops ████████████████████████</text>
+                <!-- axis -->
+                <line x1="90" y1="185" x2="550" y2="185" stroke="#3a3a50" stroke-width="1"/>
+                <text x="280" y="200" text-anchor="middle" fill="#5a5a70" font-size="10">Operations required — at n = 16 inputs</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="topic-block">
             <h3>How to Calculate Big-O</h3>
             <p>Rules for simplifying Big-O: (1) <strong>Drop constants</strong>: O(2n) = O(n). (2) <strong>Drop
                 lower-order terms</strong>: O(n² + n) = O(n²). (3) <strong>Loops multiply</strong>: a loop inside a loop
@@ -1753,9 +1870,74 @@ s.<span class="fn">push</span>(<span class="nm">20</span>)
               case = O(n).</div>
           </div>
 
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Algorithm Analysis &amp; Big-O</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Big-O notation expresses: <span style="font-size:11px;color:var(--text3);">(Test P10)</span></p>
+            <p style="color:var(--red2);">✗ Common wrong answers: "Exact runtime" / "Lower bound" / "Average case"</p>
+            <p style="color:var(--green2);">✓ Correct: Upper bound on an algorithm's growth rate (worst case)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Big-O describes the worst-case scenario — the maximum time/space an algorithm will need. Ω (Omega) = lower bound (best case). Θ (Theta) = tight bound (both upper and lower). For exam: O = upper bound = worst case.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Replacing element A[k] in an array has complexity: <span style="font-size:11px;color:var(--text3);">(Test P12)</span></p>
+            <p style="color:var(--green2);">✓ O(1) — constant time regardless of array size or k</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Direct address calculation: address = base + (k × element_size). This arithmetic is O(1). Same applies to reading A[k].</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is a "good" algorithm? What are its characteristics? <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+            <p style="color:var(--green2);">✓ A good algorithm must be: Correct (produces right output), Efficient (optimal time/space), Finite (terminates in finite steps), Definite (each step is clear and unambiguous), Effective (steps are basic enough to be executed)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">From the test (P23): "A solution to a problem is said to be efficient if it is solved within required time and resource constraints." Efficiency = both time complexity AND space complexity must be acceptable.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the Big-O for BST insertion (best, average, worst)? <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q1b)</span></p>
+            <p style="color:var(--green2);">✓ Best: O(log n) | Average: O(log n) | Worst: O(n)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:0;">Best/Average: balanced tree, height ≈ log n. Worst: inserting already-sorted values creates a skewed chain of height n. This is why balanced BSTs (AVL, Red-Black) exist.</p>
+          </div>
+
           <div class="quiz-block">
             <div class="quiz-title">Quick Quiz — Section 2</div>
             <div id="quiz-s2"></div>
+          </div>
+
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Algorithm Analysis</button>
+            <div class="toggle-content">
+              <h4>Amortized Analysis</h4>
+              <p>Amortized analysis gives the average cost per operation over a sequence of operations — even if some individual operations are expensive.</p>
+              <ul>
+                <li><strong>Dynamic Array (Python list) append:</strong> Usually O(1), but occasionally O(n) when resizing. Amortized cost = O(1) because resize happens infrequently (doubling strategy).</li>
+                <li><strong>Stack with multipop:</strong> Individual multipop is O(k) but total cost over n operations is O(n) → amortized O(1) per operation.</li>
+                <li><strong>Key insight:</strong> Amortized cost ≠ average case. Amortized is a worst-case guarantee for the total sequence, not probabilistic.</li>
+              </ul>
+              <h4>Space Complexity</h4>
+              <p>Space complexity measures extra memory used (beyond input) as a function of input size.</p>
+              <div class="table-wrap">
+                <table>
+                  <tr><th>Algorithm</th><th>Space Complexity</th><th>Reason</th></tr>
+                  <tr><td>Merge Sort</td><td>O(n)</td><td>Requires auxiliary array for merging</td></tr>
+                  <tr><td>Quick Sort</td><td>O(log n)</td><td>Recursion stack depth = log n average</td></tr>
+                  <tr><td>Heap Sort</td><td>O(1)</td><td>In-place — no extra array needed</td></tr>
+                  <tr><td>DFS/BFS</td><td>O(V)</td><td>Visited set + stack/queue hold up to V vertices</td></tr>
+                  <tr><td>Binary Search</td><td>O(1) iterative / O(log n) recursive</td><td>Recursive version uses call stack</td></tr>
+                </table>
+              </div>
+              <h4>Recurrence Relations</h4>
+              <p>Recurrence relations describe the time complexity of recursive algorithms mathematically.</p>
+              <ul>
+                <li><strong>Merge Sort:</strong> T(n) = 2T(n/2) + O(n). Meaning: 2 recursive calls on half-sized input + O(n) to merge. Solution: T(n) = O(n log n) by Master Theorem Case 2.</li>
+                <li><strong>Binary Search:</strong> T(n) = T(n/2) + O(1). One recursive call on half input + O(1) comparison. Solution: T(n) = O(log n).</li>
+                <li><strong>Factorial:</strong> T(n) = T(n-1) + O(1). Solution: T(n) = O(n).</li>
+                <li><strong>Fibonacci (naive):</strong> T(n) = T(n-1) + T(n-2) + O(1). Solution: T(n) = O(2ⁿ) — exponential! DP reduces this to O(n).</li>
+              </ul>
+              <h4>Master Theorem (Case 2 — for Merge Sort)</h4>
+              <p>For T(n) = aT(n/b) + f(n): if f(n) = Θ(n^log_b(a)), then T(n) = Θ(n^log_b(a) · log n).</p>
+              <p><strong>Merge Sort:</strong> a=2, b=2, f(n)=n. log₂(2)=1. f(n)=n=Θ(n¹)=Θ(n^log_b(a)). This is Case 2 → T(n) = Θ(n · log n) = Θ(n log n). ✓</p>
+              <h4>Common Complexity Comparisons</h4>
+              <p>For large n: O(1) &lt; O(log n) &lt; O(√n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(n³) &lt; O(2ⁿ) &lt; O(n!)</p>
+              <p>Practical example (n=1,000,000): O(log n) ≈ 20 operations. O(n log n) ≈ 20,000,000. O(n²) ≈ 10¹² — would take years. O(2ⁿ) — astronomically impossible.</p>
+              <p><strong>Further Reading:</strong>
+                <a href="https://www.geeksforgeeks.org/analysis-of-algorithms-set-1-asymptotic-analysis/" target="_blank" rel="noopener">GFG: Asymptotic Analysis</a> |
+                <a href="https://www.geeksforgeeks.org/analysis-algorithm-set-4-master-method-solving-recurrences/" target="_blank" rel="noopener">GFG: Master Theorem</a> |
+                <a href="https://www.geeksforgeeks.org/amortized-analysis/" target="_blank" rel="noopener">GFG: Amortized Analysis</a>
+              </p>
+            </div>
           </div>
 
           <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s2')">✓ Mark Section 2
@@ -1949,6 +2131,32 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
               matrix[2][0]=7 matrix[2][1]=8 matrix[2][2]=9</div>
           </div>
 
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Arrays</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which data structure allows direct (random) access to any element? <span style="font-size:11px;color:var(--text3);">(Test P4)</span></p>
+            <p style="color:var(--green2);">✓ Array</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Arrays provide O(1) access to any element using index arithmetic: address = base_address + (index × element_size). This is called random access or direct access. Linked lists require O(n) traversal to reach element at position i.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Time complexity of replacing element A[k] in an array? <span style="font-size:11px;color:var(--text3);">(Test P12)</span></p>
+            <p style="color:var(--green2);">✓ O(1) — constant time</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Array element access and modification use direct address calculation. A[k] = base + k × size. Both read and write are O(1) regardless of array size or value of k. This is one of the key advantages of arrays over linked lists.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the difference between arrays and linked lists? <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+            <div class="table-wrap" style="margin-top:8px;margin-bottom:0;">
+              <table>
+                <tr><th>Feature</th><th>Array</th><th>Linked List</th></tr>
+                <tr><td>Memory</td><td>Contiguous</td><td>Non-contiguous</td></tr>
+                <tr><td>Size</td><td>Fixed (static)</td><td>Dynamic</td></tr>
+                <tr><td>Access by index</td><td class="good">O(1)</td><td class="bad">O(n)</td></tr>
+                <tr><td>Insert/Delete at head</td><td class="bad">O(n) — must shift</td><td class="good">O(1)</td></tr>
+                <tr><td>Insert/Delete at end</td><td class="good">O(1) if space</td><td class="ok">O(n) for singly LL</td></tr>
+                <tr><td>Search (unsorted)</td><td class="ok">O(n)</td><td class="ok">O(n)</td></tr>
+                <tr><td>Cache performance</td><td>Excellent (contiguous)</td><td>Poor (scattered)</td></tr>
+              </table>
+            </div>
+          </div>
+
           <div class="quiz-block">
             <div class="quiz-title">Quick Quiz — Section 3</div>
             <div id="quiz-s3"></div>
@@ -2024,15 +2232,113 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
             </p>
             <div class="callout callout-exam"><strong>EXAM:</strong> A node in its most basic form = one area for data +
               one area for a pointer to the next node. This was a direct question in your test.</div>
-            <div class="tree-visual">
-              Node structure:
-              ┌──────────┬──────────┐
-              │ DATA │ NEXT ──┼──→ next node
-              └──────────┴──────────┘
+            <div class="diagram">
+              <svg viewBox="0 0 560 260" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace" font-size="11">
+                <!-- Title: Singly -->
+                <text x="10" y="18" fill="#9090a8" font-size="12" font-weight="700">Singly Linked List</text>
+                <!-- Nodes: 10 → 20 → 30 → NULL -->
+                <!-- Node 10 -->
+                <rect x="10" y="26" width="55" height="32" rx="3" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="37" y="46" text-anchor="middle" fill="#c4b5fd" font-weight="700">10</text>
+                <rect x="65" y="26" width="28" height="32" rx="3" fill="rgba(255,255,255,0.05)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="79" y="45" text-anchor="middle" fill="#7c3aed" font-size="16">●</text>
+                <!-- Arrow to node 20 -->
+                <line x1="93" y1="42" x2="118" y2="42" stroke="#7c3aed" stroke-width="2"/>
+                <polygon points="118,38 126,42 118,46" fill="#7c3aed"/>
+                <!-- Node 20 -->
+                <rect x="126" y="26" width="55" height="32" rx="3" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="153" y="46" text-anchor="middle" fill="#c4b5fd" font-weight="700">20</text>
+                <rect x="181" y="26" width="28" height="32" rx="3" fill="rgba(255,255,255,0.05)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="195" y="45" text-anchor="middle" fill="#7c3aed" font-size="16">●</text>
+                <!-- Arrow to node 30 -->
+                <line x1="209" y1="42" x2="234" y2="42" stroke="#7c3aed" stroke-width="2"/>
+                <polygon points="234,38 242,42 234,46" fill="#7c3aed"/>
+                <!-- Node 30 -->
+                <rect x="242" y="26" width="55" height="32" rx="3" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="269" y="46" text-anchor="middle" fill="#c4b5fd" font-weight="700">30</text>
+                <rect x="297" y="26" width="28" height="32" rx="3" fill="rgba(255,255,255,0.05)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="311" y="45" text-anchor="middle" fill="#7c3aed" font-size="16">●</text>
+                <!-- Arrow to NULL -->
+                <line x1="325" y1="42" x2="352" y2="42" stroke="#7c3aed" stroke-width="2"/>
+                <polygon points="352,38 360,42 352,46" fill="#7c3aed"/>
+                <rect x="360" y="30" width="44" height="24" rx="3" fill="rgba(239,68,68,0.1)" stroke="#ef4444" stroke-width="1.5"/>
+                <text x="382" y="46" text-anchor="middle" fill="#fca5a5" font-weight="700">NULL</text>
+                <!-- Labels -->
+                <text x="37" y="72" text-anchor="middle" fill="#5a5a70" font-size="10">head</text>
+                <text x="269" y="72" text-anchor="middle" fill="#5a5a70" font-size="10">tail</text>
 
-              Singly Linked List:
-              [10|●]──→[20|●]──→[30|●]──→[40|NULL]
-              head tail
+                <!-- Title: Doubly -->
+                <text x="10" y="100" fill="#9090a8" font-size="12" font-weight="700">Doubly Linked List</text>
+                <!-- NULL left -->
+                <rect x="10" y="108" width="44" height="24" rx="3" fill="rgba(239,68,68,0.1)" stroke="#ef4444" stroke-width="1.5"/>
+                <text x="32" y="124" text-anchor="middle" fill="#fca5a5" font-weight="700">NULL</text>
+                <!-- Arrow left to node 10 -->
+                <line x1="54" y1="120" x2="76" y2="120" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"/>
+                <!-- Node 10 doubly -->
+                <rect x="76" y="108" width="30" height="24" rx="3" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="91" y="123" text-anchor="middle" fill="#93c5fd" font-size="9">prev</text>
+                <rect x="106" y="108" width="40" height="24" rx="3" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="126" y="124" text-anchor="middle" fill="#c4b5fd" font-weight="700">10</text>
+                <rect x="146" y="108" width="30" height="24" rx="3" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="161" y="123" text-anchor="middle" fill="#93c5fd" font-size="9">next</text>
+                <!-- Arrows between 10 and 20 -->
+                <line x1="176" y1="115" x2="200" y2="115" stroke="#7c3aed" stroke-width="2"/>
+                <polygon points="200,111 208,115 200,119" fill="#7c3aed"/>
+                <line x1="208" y1="125" x2="176" y2="125" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"/>
+                <polygon points="176,121 168,125 176,129" fill="#3b82f6"/>
+                <!-- Node 20 doubly -->
+                <rect x="208" y="108" width="30" height="24" rx="3" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="223" y="123" text-anchor="middle" fill="#93c5fd" font-size="9">prev</text>
+                <rect x="238" y="108" width="40" height="24" rx="3" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="258" y="124" text-anchor="middle" fill="#c4b5fd" font-weight="700">20</text>
+                <rect x="278" y="108" width="30" height="24" rx="3" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="293" y="123" text-anchor="middle" fill="#93c5fd" font-size="9">next</text>
+                <!-- Arrows between 20 and 30 -->
+                <line x1="308" y1="115" x2="332" y2="115" stroke="#7c3aed" stroke-width="2"/>
+                <polygon points="332,111 340,115 332,119" fill="#7c3aed"/>
+                <line x1="340" y1="125" x2="308" y2="125" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,2"/>
+                <polygon points="308,121 300,125 308,129" fill="#3b82f6"/>
+                <!-- Node 30 doubly -->
+                <rect x="340" y="108" width="30" height="24" rx="3" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="355" y="123" text-anchor="middle" fill="#93c5fd" font-size="9">prev</text>
+                <rect x="370" y="108" width="40" height="24" rx="3" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="390" y="124" text-anchor="middle" fill="#c4b5fd" font-weight="700">30</text>
+                <rect x="410" y="108" width="30" height="24" rx="3" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="425" y="123" text-anchor="middle" fill="#93c5fd" font-size="9">next</text>
+                <!-- NULL right -->
+                <line x1="440" y1="120" x2="462" y2="120" stroke="#7c3aed" stroke-width="2"/>
+                <rect x="462" y="108" width="44" height="24" rx="3" fill="rgba(239,68,68,0.1)" stroke="#ef4444" stroke-width="1.5"/>
+                <text x="484" y="124" text-anchor="middle" fill="#fca5a5" font-weight="700">NULL</text>
+
+                <!-- Title: Circular -->
+                <text x="10" y="185" fill="#9090a8" font-size="12" font-weight="700">Circular Linked List</text>
+                <!-- Nodes -->
+                <rect x="30" y="193" width="55" height="32" rx="3" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="57" y="213" text-anchor="middle" fill="#6ee7b7" font-weight="700">10</text>
+                <rect x="85" y="193" width="25" height="32" rx="3" fill="rgba(255,255,255,0.04)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="97" y="212" text-anchor="middle" fill="#10b981" font-size="14">●</text>
+                <line x1="110" y1="209" x2="134" y2="209" stroke="#10b981" stroke-width="2"/>
+                <polygon points="134,205 142,209 134,213" fill="#10b981"/>
+                <!-- Node 20 -->
+                <rect x="142" y="193" width="55" height="32" rx="3" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="169" y="213" text-anchor="middle" fill="#6ee7b7" font-weight="700">20</text>
+                <rect x="197" y="193" width="25" height="32" rx="3" fill="rgba(255,255,255,0.04)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="209" y="212" text-anchor="middle" fill="#10b981" font-size="14">●</text>
+                <line x1="222" y1="209" x2="246" y2="209" stroke="#10b981" stroke-width="2"/>
+                <polygon points="246,205 254,209 246,213" fill="#10b981"/>
+                <!-- Node 30 -->
+                <rect x="254" y="193" width="55" height="32" rx="3" fill="rgba(16,185,129,0.12)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="281" y="213" text-anchor="middle" fill="#6ee7b7" font-weight="700">30</text>
+                <rect x="309" y="193" width="25" height="32" rx="3" fill="rgba(255,255,255,0.04)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="321" y="212" text-anchor="middle" fill="#10b981" font-size="14">●</text>
+                <!-- Circular arrow from tail back to head -->
+                <path d="M334 209 Q420 195 420 250 Q420 258 280 258 Q140 258 30 250 Q10 248 10 225 Q10 200 30 197" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,3"/>
+                <polygon points="30,193 26,201 34,201" fill="#10b981"/>
+                <text x="380" y="255" text-anchor="middle" fill="#10b981" font-size="10">← tail.next = head (no NULL)</text>
+                <!-- head/tail labels -->
+                <text x="57" y="240" text-anchor="middle" fill="#5a5a70" font-size="10">head</text>
+                <text x="281" y="240" text-anchor="middle" fill="#5a5a70" font-size="10">tail</text>
+              </svg>
             </div>
           </div>
 
@@ -2180,9 +2486,177 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
             </div>
           </div>
 
+          <div class="topic-block">
+            <h3>Doubly Linked List — Full Implementation</h3>
+            <p>A doubly linked list node has three fields: <code>prev</code>, <code>data</code>, <code>next</code>. This enables bidirectional traversal and O(1) deletion if you have a pointer to the node.</p>
+            <div class="code-block">
+              <div class="code-header"><span class="code-lang">Python — Doubly Linked List (Full)</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+              <pre><span class="kw">class</span> <span class="fn">DNode</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>, data):
+        <span class="nm">self</span>.data = data
+        <span class="nm">self</span>.prev = <span class="nm">None</span>
+        <span class="nm">self</span>.next = <span class="nm">None</span>
+
+<span class="kw">class</span> <span class="fn">DoublyLinkedList</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>):
+        <span class="nm">self</span>.head = <span class="nm">None</span>
+        <span class="nm">self</span>.tail = <span class="nm">None</span>
+
+    <span class="kw">def</span> <span class="fn">insert_front</span>(<span class="nm">self</span>, data):   <span class="cm"># O(1)</span>
+        node = <span class="fn">DNode</span>(data)
+        <span class="kw">if not</span> <span class="nm">self</span>.head:
+            <span class="nm">self</span>.head = <span class="nm">self</span>.tail = node
+            <span class="kw">return</span>
+        node.next = <span class="nm">self</span>.head
+        <span class="nm">self</span>.head.prev = node
+        <span class="nm">self</span>.head = node
+
+    <span class="kw">def</span> <span class="fn">insert_end</span>(<span class="nm">self</span>, data):     <span class="cm"># O(1) — we have a tail pointer</span>
+        node = <span class="fn">DNode</span>(data)
+        <span class="kw">if not</span> <span class="nm">self</span>.tail:
+            <span class="nm">self</span>.head = <span class="nm">self</span>.tail = node
+            <span class="kw">return</span>
+        node.prev = <span class="nm">self</span>.tail
+        <span class="nm">self</span>.tail.next = node
+        <span class="nm">self</span>.tail = node
+
+    <span class="kw">def</span> <span class="fn">delete</span>(<span class="nm">self</span>, node):          <span class="cm"># O(1) if you have the node pointer</span>
+        <span class="kw">if</span> node.prev: node.prev.next = node.next
+        <span class="kw">else</span>: <span class="nm">self</span>.head = node.next   <span class="cm"># Deleting head</span>
+        <span class="kw">if</span> node.next: node.next.prev = node.prev
+        <span class="kw">else</span>: <span class="nm">self</span>.tail = node.prev   <span class="cm"># Deleting tail</span>
+
+    <span class="kw">def</span> <span class="fn">display_forward</span>(<span class="nm">self</span>):       <span class="cm"># O(n)</span>
+        cur = <span class="nm">self</span>.head
+        <span class="kw">while</span> cur: <span class="fn">print</span>(cur.data, end=<span class="st">" ↔ "</span>); cur = cur.next
+        <span class="fn">print</span>(<span class="st">"NULL"</span>)
+
+    <span class="kw">def</span> <span class="fn">display_backward</span>(<span class="nm">self</span>):      <span class="cm"># O(n) — traverse from tail</span>
+        cur = <span class="nm">self</span>.tail
+        <span class="kw">while</span> cur: <span class="fn">print</span>(cur.data, end=<span class="st">" ↔ "</span>); cur = cur.prev
+        <span class="fn">print</span>(<span class="st">"NULL"</span>)</pre>
+            </div>
+          </div>
+
+          <div class="topic-block">
+            <h3>Doubly vs Circular Linked List — Comparison (Theory Assignment Q1a)</h3>
+            <div class="table-wrap">
+              <table>
+                <tr>
+                  <th>Feature</th>
+                  <th>Doubly Linked List</th>
+                  <th>Circular Linked List</th>
+                </tr>
+                <tr>
+                  <td>Node pointers</td>
+                  <td>prev + next (2 pointers)</td>
+                  <td>next only (1 pointer, tail→head)</td>
+                </tr>
+                <tr>
+                  <td>Traversal direction</td>
+                  <td>Both forward and backward</td>
+                  <td>Forward only (singly circular)</td>
+                </tr>
+                <tr>
+                  <td>Termination</td>
+                  <td>NULL at head and tail</td>
+                  <td>No NULL — loops back to head</td>
+                </tr>
+                <tr>
+                  <td>Delete node (with pointer)</td>
+                  <td class="good">O(1) — adjust prev/next</td>
+                  <td class="bad">O(n) — must find predecessor</td>
+                </tr>
+                <tr>
+                  <td>Memory per node</td>
+                  <td class="bad">More (2 pointers)</td>
+                  <td class="good">Less (1 pointer)</td>
+                </tr>
+                <tr>
+                  <td>Real-world use cases</td>
+                  <td>Browser history, undo/redo, text editors</td>
+                  <td>Round-robin CPU scheduling, media playlist loop</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Linked Lists</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: In its most basic form, a linked list node consists of: <span style="font-size:11px;color:var(--text3);">(Test P4)</span></p>
+            <p style="color:var(--green2);">✓ Data (value) + a pointer to the next node</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">A singly linked list node has exactly two fields: the data/value field and a next pointer. Doubly linked list nodes add a prev pointer. Circular linked lists have the same node structure but the tail's next points back to the head.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: How is a circular linked list created from a singly linked list? <span style="font-size:11px;color:var(--text3);">(Test P18)</span></p>
+            <p style="color:var(--green2);">✓ The tail node's next pointer is set to point to the head node (instead of NULL)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">In a regular singly linked list, tail.next = NULL. Making it circular: tail.next = head. This allows traversal of the list to wrap around indefinitely. No NULL terminus — traversal must track when it returns to start.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Compare doubly linked list vs circular linked list — describe with real-world applications. <span style="font-size:11px;color:var(--text3);">(Theory Assignment Q1a)</span></p>
+            <div class="table-wrap" style="margin-top:8px;margin-bottom:14px;">
+              <table>
+                <tr><th>Feature</th><th>Doubly Linked List</th><th>Circular Linked List</th></tr>
+                <tr><td>Traversal</td><td>Forward and backward</td><td>Circular — loops back to head</td></tr>
+                <tr><td>Head pointer</td><td>Required</td><td>Sufficient alone (or tail)</td></tr>
+                <tr><td>Deletion</td><td>O(1) with node pointer (has prev)</td><td>O(n) — must traverse to find prev</td></tr>
+                <tr><td>Memory</td><td>2 pointers per node</td><td>1 pointer per node (singly circular)</td></tr>
+                <tr><td>Real-world use</td><td>Browser history, text editor undo/redo</td><td>Round-robin scheduling, media playlists</td></tr>
+              </table>
+            </div>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What are the advantages of linked lists over arrays? <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+            <p style="color:var(--green2);">✓ Dynamic size (grows/shrinks at runtime), efficient insertion/deletion at head O(1), no wasted memory allocation</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:0;">Arrays have O(1) random access but O(n) insertion/deletion (must shift elements). Linked lists have O(n) access but O(1) insertion/deletion at head. Arrays are better when random access is frequent; linked lists are better when frequent insertion/deletion at head/middle is needed.</p>
+          </div>
+
           <div class="quiz-block">
             <div class="quiz-title">Quick Quiz — Section 4</div>
             <div id="quiz-s4"></div>
+          </div>
+
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Linked Lists</button>
+            <div class="toggle-content">
+              <h4>Memory Allocation: Heap vs Stack</h4>
+              <p>Arrays are typically allocated on the <strong>stack</strong> (if static/local) or <strong>heap</strong> (if dynamic). Linked list nodes are always on the <strong>heap</strong> because their count isn't known at compile time.</p>
+              <div class="table-wrap">
+                <table>
+                  <tr><th>Property</th><th>Stack Allocation</th><th>Heap Allocation</th></tr>
+                  <tr><td>Size known at compile time?</td><td>Yes — required</td><td>No — determined at runtime</td></tr>
+                  <tr><td>Allocation speed</td><td>O(1) — just move stack pointer</td><td>Slower — malloc/new finds free block</td></tr>
+                  <tr><td>Lifetime</td><td>Ends when function returns</td><td>Persists until free()/GC collects</td></tr>
+                  <tr><td>Memory management</td><td>Automatic</td><td>Manual (C/C++) or GC (Java/Python)</td></tr>
+                  <tr><td>Used for</td><td>Local arrays, function frames</td><td>Linked list nodes, dynamic arrays</td></tr>
+                </table>
+              </div>
+              <h4>Skip Lists (Advanced)</h4>
+              <p>A probabilistic data structure built on top of linked lists. Maintains multiple "express lanes" of sorted linked lists at different levels, enabling fast search.</p>
+              <ul>
+                <li><strong>Search/Insert/Delete:</strong> O(log n) average, O(n) worst case</li>
+                <li><strong>Space:</strong> O(n log n) average</li>
+                <li><strong>Advantage over BST:</strong> Simpler to implement without rotations; naturally supports concurrent access</li>
+                <li><strong>Used in:</strong> Redis (sorted sets), LevelDB, Java ConcurrentSkipListMap</li>
+              </ul>
+              <h4>Linked List vs Array — Full Performance Analysis</h4>
+              <div class="table-wrap">
+                <table>
+                  <tr><th>Operation</th><th>Array (n elements)</th><th>Singly LL</th><th>Doubly LL</th></tr>
+                  <tr><td>Access by index</td><td class="good">O(1)</td><td class="bad">O(n)</td><td class="bad">O(n)</td></tr>
+                  <tr><td>Insert at head</td><td class="bad">O(n) shift</td><td class="good">O(1)</td><td class="good">O(1)</td></tr>
+                  <tr><td>Insert at tail</td><td class="good">O(1) amortized</td><td class="ok">O(n) or O(1) w/tail ptr</td><td class="good">O(1) w/tail ptr</td></tr>
+                  <tr><td>Insert at middle (with pointer)</td><td class="bad">O(n) shift</td><td class="ok">O(1) — but finding it is O(n)</td><td class="good">O(1) — prev pointer known</td></tr>
+                  <tr><td>Delete at head</td><td class="bad">O(n) shift</td><td class="good">O(1)</td><td class="good">O(1)</td></tr>
+                  <tr><td>Delete with node pointer</td><td class="bad">O(n) shift</td><td class="ok">O(n) — need prev</td><td class="good">O(1)</td></tr>
+                  <tr><td>Search (unsorted)</td><td class="ok">O(n)</td><td class="ok">O(n)</td><td class="ok">O(n)</td></tr>
+                  <tr><td>Memory overhead</td><td>None</td><td>1 pointer/node</td><td>2 pointers/node</td></tr>
+                  <tr><td>Cache performance</td><td class="good">Excellent</td><td class="bad">Poor</td><td class="bad">Poor</td></tr>
+                </table>
+              </div>
+              <p><strong>Further Reading:</strong>
+                <a href="https://www.geeksforgeeks.org/data-structures/linked-list/" target="_blank" rel="noopener">GFG: Linked Lists</a> |
+                <a href="https://www.geeksforgeeks.org/skip-list/" target="_blank" rel="noopener">GFG: Skip Lists</a>
+              </p>
+            </div>
           </div>
 
           <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s4')">✓ Mark Section 4
@@ -2340,6 +2814,69 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
 <span class="fn">print</span>(<span class="fn">is_balanced</span>(<span class="st">"({[})"</span>))     <span class="cm"># False — ] closed before [</span>
 <span class="fn">print</span>(<span class="fn">is_balanced</span>(<span class="st">"((("</span>))       <span class="cm"># False — 3 unclosed</span></pre>
             </div>
+          </div>
+
+          <div class="topic-block">
+            <h3>Implementing a Queue Using Two Stacks (Theory Assignment Q2c)</h3>
+            <p>A clever way to implement a FIFO queue using two LIFO stacks. <strong>Stack1</strong> handles all enqueue operations. <strong>Stack2</strong> handles dequeue — when Stack2 is empty, transfer everything from Stack1 to Stack2 (reversing the order, making oldest item accessible at top of Stack2).</p>
+            <div class="tree-visual">
+  Enqueue(1), Enqueue(2), Enqueue(3):
+    Stack1: [1, 2, 3 (top)]    Stack2: []
+
+  Dequeue():
+    Stack2 is empty → Transfer Stack1 → Stack2:
+    Stack1: []    Stack2: [3, 2, 1 (top)]
+    Pop from Stack2: returns 1 ← Correct FIFO order!
+
+  Dequeue() again:
+    Stack2: [3, 2 (top)]  → Pop returns 2 ✓
+
+  Amortized O(1) per operation — each element is moved at most once.</div>
+            <div class="code-block">
+              <div class="code-header"><span class="code-lang">Python — Queue Using 2 Stacks</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+              <pre><span class="kw">class</span> <span class="fn">QueueWith2Stacks</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="nm">self</span>):
+        <span class="nm">self</span>.stack1 = []  <span class="cm"># Enqueue stack (inbox)</span>
+        <span class="nm">self</span>.stack2 = []  <span class="cm"># Dequeue stack (outbox)</span>
+
+    <span class="kw">def</span> <span class="fn">enqueue</span>(<span class="nm">self</span>, item):
+        <span class="nm">self</span>.stack1.append(item)  <span class="cm"># O(1) — just push to stack1</span>
+
+    <span class="kw">def</span> <span class="fn">dequeue</span>(<span class="nm">self</span>):
+        <span class="kw">if not</span> <span class="nm">self</span>.stack2:         <span class="cm"># Only transfer when stack2 is empty</span>
+            <span class="kw">while</span> <span class="nm">self</span>.stack1:
+                <span class="nm">self</span>.stack2.append(<span class="nm">self</span>.stack1.pop())
+        <span class="kw">if not</span> <span class="nm">self</span>.stack2:
+            <span class="kw">raise</span> <span class="fn">IndexError</span>(<span class="st">"Queue is empty"</span>)
+        <span class="kw">return</span> <span class="nm">self</span>.stack2.pop()   <span class="cm"># O(1) amortized</span>
+
+<span class="cm"># Test:</span>
+q = <span class="fn">QueueWith2Stacks</span>()
+q.<span class="fn">enqueue</span>(<span class="nm">1</span>); q.<span class="fn">enqueue</span>(<span class="nm">2</span>); q.<span class="fn">enqueue</span>(<span class="nm">3</span>)
+<span class="fn">print</span>(q.<span class="fn">dequeue</span>())  <span class="cm"># → 1</span>
+<span class="fn">print</span>(q.<span class="fn">dequeue</span>())  <span class="cm"># → 2</span></pre>
+            </div>
+          </div>
+
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Stacks</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which data structure is best suited for testing whether a string is a palindrome? <span style="font-size:11px;color:var(--text3);">(Test P5)</span></p>
+            <p style="color:var(--green2);">✓ Stack</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Push the first half of characters onto a stack, then compare with the second half by popping. If all characters match, it's a palindrome. The LIFO property of a stack naturally reverses the order of characters.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the natural data structure for implementing recursive function calls? <span style="font-size:11px;color:var(--text3);">(Test P5)</span></p>
+            <p style="color:var(--green2);">✓ Stack (the call stack)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Every function call pushes a stack frame (local variables, return address, parameters) onto the call stack. When the function returns, its frame is popped. Recursion works because LIFO matches the "last called, first returned" nature of nested function calls. Stack overflow occurs when the call stack runs out of space due to too-deep recursion.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Implement a Queue using two Stacks. <span style="font-size:11px;color:var(--text3);">(Theory Assignment Q2c)</span></p>
+            <p style="color:var(--green2);">✓ Use stack1 for enqueue, stack2 for dequeue. Transfer all of stack1 to stack2 when dequeue needed and stack2 is empty.</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:6px;">See full implementation above in the "Queue using 2 Stacks" section. Amortized O(1) per operation.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">⚠️ TEST ERROR — Q: Which data structure uses LIFO (Last In, First Out)? <span style="font-size:11px;color:var(--text3);">(Test P24)</span></p>
+            <p style="color:var(--red2);">⚠️ The test listed "Queue" as the correct answer — THIS IS WRONG. Queue uses FIFO, NOT LIFO.</p>
+            <p style="color:var(--green2);">✓ REAL correct answer: Stack uses LIFO (Last In, First Out)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:0;"><strong>Remember:</strong> Stack = LIFO (like a stack of plates — last placed on top is first removed). Queue = FIFO (First In, First Out — like a line at a cashier). This test error has been documented. In your exam, if asked about LIFO → Stack. FIFO → Queue.</p>
           </div>
 
           <div class="quiz-block">
@@ -2624,6 +3161,35 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
               top of stack, pop the stack first before pushing the new operator.</div>
           </div>
 
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Expression Notation</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Find the Prefix form of: (a + (b − c)) * ((d − e) / (f + g − h)) <span style="font-size:11px;color:var(--text3);">(Test P9)</span></p>
+            <p style="color:var(--green2);">✓ Prefix: * +a −bc / −de −+fgh</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:6px;"><strong>Step-by-step derivation:</strong></p>
+            <div class="table-wrap" style="margin-top:8px;margin-bottom:14px;">
+              <table>
+                <tr><th>Sub-expression</th><th>Infix</th><th>Prefix</th></tr>
+                <tr><td>Inner left 1</td><td>b − c</td><td>−bc</td></tr>
+                <tr><td>Inner left 2</td><td>a + (b−c)</td><td>+a −bc</td></tr>
+                <tr><td>Inner right 1</td><td>d − e</td><td>−de</td></tr>
+                <tr><td>Inner right 2</td><td>f + g</td><td>+fg</td></tr>
+                <tr><td>Inner right 3</td><td>(f+g) − h</td><td>−+fgh</td></tr>
+                <tr><td>Right side</td><td>(d−e) / (f+g−h)</td><td>/ −de −+fgh</td></tr>
+                <tr><td><strong>Full expression</strong></td><td>(a+(b−c)) * ((d−e)/(f+g−h))</td><td class="good"><strong>* +a −bc / −de −+fgh</strong></td></tr>
+              </table>
+            </div>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;"><strong>Rule for Prefix:</strong> Operator comes before its operands. Convert each innermost parenthesized expression first (bottom-up). Alternatively, use a modified Shunting-Yard reading right-to-left, or use a recursive tree approach.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the evaluation order for Prefix (Polish) notation? <span style="font-size:11px;color:var(--text3);">(Theory / Practice)</span></p>
+            <p style="color:var(--green2);">✓ Read right-to-left; use a stack. When operand: push. When operator: pop two operands, apply, push result.</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Example: <code>* + 2 3 4</code> → read right-to-left: push 4, push 3, push 2, see +: pop 2,3 → push 5, see *: pop 5,4 → push 20. Result = 20. (Alternatively: + 2 3 = 5; * 5 4 = 20.)</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the advantage of Postfix notation over Infix? <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+            <p style="color:var(--green2);">✓ No parentheses needed; no operator precedence rules needed; easy to evaluate using a stack; ideal for computer evaluation</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:0;">Compilers convert infix expressions to postfix for evaluation. The Shunting-Yard algorithm (by Dijkstra) performs this conversion in O(n) time using an operator stack.</p>
+          </div>
+
           <div class="quiz-block">
             <div class="quiz-title">Quick Quiz — Section 6</div>
             <div id="quiz-s6"></div>
@@ -2885,6 +3451,89 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
               Quadratic probing does NOT visit all slots unless table size is a prime number.</div>
           </div>
 
+          <div class="topic-block">
+            <h3>Priority Queue &amp; Deque (Course Outline Topics)</h3>
+            <div class="compare-grid">
+              <div class="compare-card">
+                <h4 style="color:var(--amber2);">Priority Queue</h4>
+                <ul>
+                  <li>Elements dequeued in order of <strong>priority</strong>, not insertion order</li>
+                  <li>Highest (or lowest) priority item always comes out first</li>
+                  <li>Implemented using a <strong>min-heap</strong> or max-heap</li>
+                  <li>Used by: Dijkstra's algorithm, CPU scheduling, Prim's algorithm</li>
+                  <li>Python: <code>heapq</code> module implements a min-priority queue</li>
+                </ul>
+              </div>
+              <div class="compare-card">
+                <h4 style="color:var(--blue2);">Deque (Double-Ended Queue)</h4>
+                <ul>
+                  <li>Allows insertion/removal at <strong>both ends</strong> (front and back)</li>
+                  <li>Generalises both Stack (LIFO) and Queue (FIFO)</li>
+                  <li>Python: <code>collections.deque</code></li>
+                  <li>Operations: appendleft(), append(), popleft(), pop() — all O(1)</li>
+                  <li>Used for: sliding window algorithms, palindrome checking</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="topic-block">
+            <h3>Collision in Hash Tables — What Happens? (Theory Assignment Q2d)</h3>
+            <p>A <strong>collision</strong> occurs when two or more keys hash to the <strong>same index</strong> in the hash table. This is unavoidable when the number of possible keys exceeds the table size. Two primary strategies handle collisions:</p>
+            <div class="compare-grid">
+              <div class="compare-card">
+                <h4 style="color:var(--green2);">Separate Chaining (Closed Hashing)</h4>
+                <ul>
+                  <li>Each bucket holds a <strong>linked list</strong> of all elements that hash there</li>
+                  <li>Load factor λ can exceed 1 (more items than slots)</li>
+                  <li>Search: O(1+λ) average</li>
+                  <li>Simple to implement; uses extra memory for pointers</li>
+                </ul>
+              </div>
+              <div class="compare-card">
+                <h4 style="color:var(--amber2);">Open Addressing</h4>
+                <ul>
+                  <li>All elements stored <strong>within the table</strong> itself</li>
+                  <li>On collision, probe for next empty slot</li>
+                  <li>Types: Linear (h+1), <strong>Quadratic (h+i²)</strong>, Double Hashing</li>
+                  <li>Load factor λ must be &lt; 1; table can fill up</li>
+                  <li>From test: <strong>Quadratic probing</strong> = best technique for collision handling</li>
+                </ul>
+              </div>
+            </div>
+            <div class="callout callout-exam"><strong>Theory Assignment Q2d:</strong> "What happens when two keys map to the same location?" → A <strong>collision</strong> occurs. The hash table must resolve it using chaining (linked list at bucket) or open addressing (probe for next empty slot). Performance degrades as load factor increases. Rehashing is performed when λ ≈ 0.75 in open addressing.</div>
+          </div>
+
+          <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+            <h3>📝 Past Exam Questions — Queues &amp; Hash Tables</h3>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: All queue operations (enqueue, dequeue, peek) have time complexity of: <span style="font-size:11px;color:var(--text3);">(Test P8)</span></p>
+            <p style="color:var(--green2);">✓ O(1) — all queue operations are constant time</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">With a properly implemented queue (using two pointers/indices or a doubly linked list), enqueue adds to rear O(1) and dequeue removes from front O(1). No shifting required.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which is the best collision handling technique? <span style="font-size:11px;color:var(--text3);">(Test P12)</span></p>
+            <p style="color:var(--green2);">✓ Quadratic probing (per the test answer)</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;"><strong>Note:</strong> In practice, chaining is often preferred for simplicity. Quadratic probing avoids primary clustering (a problem with linear probing) by probing at positions h+1², h+2², h+3²... The test considers quadratic probing the best open-addressing technique. Double hashing is another strong option.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: In a Max-Heap, each node's value is: <span style="font-size:11px;color:var(--text3);">(Test P13)</span></p>
+            <p style="color:var(--green2);">✓ Larger than (or equal to) all its children's values</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Max-Heap property: parent ≥ children at every level. The root always holds the maximum element. Min-Heap is the opposite: parent ≤ children, root holds the minimum. Neither is a BST — heaps don't maintain left&lt;root&lt;right ordering.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What happens when two keys hash to the same location? <span style="font-size:11px;color:var(--text3);">(Theory Assignment Q2d)</span></p>
+            <p style="color:var(--green2);">✓ A collision occurs — resolved by chaining or open addressing</p>
+            <p style="color:var(--text2);font-size:13px;margin-bottom:14px;"><strong>Chaining:</strong> Each bucket holds a linked list of all keys that hash there. Simple, handles high load factors well. <strong>Open Addressing:</strong> Probe for next empty slot using linear, quadratic, or double hashing. More cache-friendly. Performance degrades as load factor λ approaches 1. Best practice: resize (rehash) when λ &gt; 0.75.</p>
+
+            <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Write a routine to insert an element into a queue. <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+            <p style="color:var(--green2);">✓ See the Queue implementations above (array-based and linked list). Core logic:</p>
+            <pre class="code-block"><span class="kw">def</span> <span class="fn">enqueue</span>(queue, item):
+    <span class="kw">if</span> is_full(queue):
+        <span class="fn">print</span>(<span class="st">"Queue overflow"</span>)
+        <span class="kw">return</span>
+    queue.rear = (queue.rear + <span class="num">1</span>) % queue.capacity  <span class="co"># circular</span>
+    queue.data[queue.rear] = item
+    queue.size += <span class="num">1</span></pre>
+          </div>
+
           <div class="quiz-block">
             <div class="quiz-title">Quick Quiz — Section 7</div>
             <div id="quiz-s7"></div>
@@ -2986,16 +3635,58 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
             <p>A BST is a binary tree with a critical property: for every node, <strong>all values in the left subtree
                 are smaller</strong>, and <strong>all values in the right subtree are larger</strong>. This makes search
               O(log n) on a balanced BST.</p>
-            <div class="tree-visual">
-              8
-              / \
-              3 10
-              / \ \
-              1 6 14
-              / \ /
-              4 7 13
-
-              BST Property: left < node < right Search for 6: 8→right? No→left→3→right→6 ✓</div>
+            <div class="diagram">
+              <svg viewBox="0 0 560 230" width="100%" height="230" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace" font-size="11">
+                <text x="280" y="16" text-anchor="middle" fill="#9090a8" font-size="12" font-weight="700">Binary Search Tree — Annotated (Nodes: 1,3,4,6,7,8,10,13,14)</text>
+                <!-- Edges first (behind nodes) -->
+                <!-- 8→3, 8→10 -->
+                <line x1="280" y1="46" x2="175" y2="96" stroke="#3a3a50" stroke-width="1.5"/>
+                <line x1="280" y1="46" x2="385" y2="96" stroke="#3a3a50" stroke-width="1.5"/>
+                <!-- 3→1, 3→6 -->
+                <line x1="175" y1="96" x2="105" y2="146" stroke="#3a3a50" stroke-width="1.5"/>
+                <line x1="175" y1="96" x2="245" y2="146" stroke="#3a3a50" stroke-width="1.5"/>
+                <!-- 10→14 -->
+                <line x1="385" y1="96" x2="455" y2="146" stroke="#3a3a50" stroke-width="1.5"/>
+                <!-- 6→4, 6→7 -->
+                <line x1="245" y1="146" x2="210" y2="196" stroke="#3a3a50" stroke-width="1.5"/>
+                <line x1="245" y1="146" x2="280" y2="196" stroke="#3a3a50" stroke-width="1.5"/>
+                <!-- 14→13 -->
+                <line x1="455" y1="146" x2="420" y2="196" stroke="#3a3a50" stroke-width="1.5"/>
+                <!-- Root node 8 — purple -->
+                <circle cx="280" cy="38" r="20" fill="rgba(124,58,237,0.3)" stroke="#7c3aed" stroke-width="2"/>
+                <text x="280" y="43" text-anchor="middle" fill="#c4b5fd" font-weight="700">8</text>
+                <!-- Level 2 -->
+                <circle cx="175" cy="88" r="18" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="175" y="93" text-anchor="middle" fill="#93c5fd" font-weight="700">3</text>
+                <circle cx="385" cy="88" r="18" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="385" y="93" text-anchor="middle" fill="#93c5fd" font-weight="700">10</text>
+                <!-- Level 3 -->
+                <circle cx="105" cy="138" r="16" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="105" y="143" text-anchor="middle" fill="#6ee7b7" font-weight="700">1</text>
+                <circle cx="245" cy="138" r="16" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="1.5"/>
+                <text x="245" y="143" text-anchor="middle" fill="#93c5fd" font-weight="700">6</text>
+                <circle cx="455" cy="138" r="16" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="455" y="143" text-anchor="middle" fill="#6ee7b7" font-weight="700">14</text>
+                <!-- Level 4 leaves -->
+                <circle cx="210" cy="188" r="14" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="210" y="193" text-anchor="middle" fill="#6ee7b7" font-weight="700">4</text>
+                <circle cx="280" cy="188" r="14" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="280" y="193" text-anchor="middle" fill="#6ee7b7" font-weight="700">7</text>
+                <circle cx="420" cy="188" r="14" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1.5"/>
+                <text x="420" y="193" text-anchor="middle" fill="#6ee7b7" font-weight="700">13</text>
+                <!-- Labels -->
+                <text x="280" y="68" text-anchor="middle" fill="#7c3aed" font-size="10">Root</text>
+                <text x="64" y="142" fill="#5a5a70" font-size="10">Leaf</text>
+                <line x1="85" y1="140" x2="91" y2="138" stroke="#5a5a70" stroke-width="1"/>
+                <text x="480" y="192" fill="#5a5a70" font-size="10">Leaf</text>
+                <line x1="479" y1="188" x2="434" y2="190" stroke="#5a5a70" stroke-width="1"/>
+                <text x="10" y="100" fill="#5a5a70" font-size="9">Left subtree</text>
+                <text x="10" y="112" fill="#5a5a70" font-size="9">all &lt; 8</text>
+                <text x="425" y="100" fill="#5a5a70" font-size="9">Right subtree</text>
+                <text x="425" y="112" fill="#5a5a70" font-size="9">all &gt; 8</text>
+                <text x="280" y="222" text-anchor="middle" fill="#5a5a70" font-size="10">Height = 3 (root is level 0) · Green = leaf nodes · Purple = root</text>
+              </svg>
+            </div>
                 <div class="callout callout-exam"><strong>EXAM:</strong> If a BST is not <strong>balanced</strong>, it
                   may be less efficient than a linear structure (degenerates to O(n) for search). An AVL tree is a
                   self-balancing BST.</div>
@@ -3162,10 +3853,296 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
                 without drawing: the LAST element in post-order is always the root (= first element of preorder). Work
                 backwards.</div>
             </div>
+            <div class="topic-block">
+              <h3>BST Deletion — 3 Cases (Practice Questions Requirement)</h3>
+              <p>Deleting a node from a BST requires handling three distinct cases depending on how many children the target node has.</p>
+              <div class="steps">
+                <div class="step">
+                  <div class="step-num">1</div>
+                  <div class="step-content">
+                    <h4>Node is a Leaf (no children)</h4>
+                    <p>Simply remove it. Set its parent's pointer to <code>None</code>.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-num">2</div>
+                  <div class="step-content">
+                    <h4>Node has One Child</h4>
+                    <p>Replace the node with its only child. The parent now points to the grandchild directly.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-num">3</div>
+                  <div class="step-content">
+                    <h4>Node has Two Children</h4>
+                    <p>Find the <strong>inorder successor</strong> (the smallest value in the right subtree). Copy the successor's value into the target node, then delete the successor (which has at most one child).</p>
+                  </div>
+                </div>
+              </div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — BST Deletion</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">def</span> <span class="fn">delete</span>(<span class="nm">self</span>, val):
+    <span class="nm">self</span>.root = <span class="nm">self</span>._delete(<span class="nm">self</span>.root, val)
+
+<span class="kw">def</span> <span class="fn">_delete</span>(<span class="nm">self</span>, node, val):
+    <span class="kw">if not</span> node: <span class="kw">return</span> <span class="nm">None</span>          <span class="cm"># Not found</span>
+    <span class="kw">if</span> val < node.val:
+        node.left = <span class="nm">self</span>._delete(node.left, val)
+    <span class="kw">elif</span> val > node.val:
+        node.right = <span class="nm">self</span>._delete(node.right, val)
+    <span class="kw">else</span>:                              <span class="cm"># Found node to delete</span>
+        <span class="cm"># Case 1 & 2: 0 or 1 child</span>
+        <span class="kw">if not</span> node.left: <span class="kw">return</span> node.right
+        <span class="kw">if not</span> node.right: <span class="kw">return</span> node.left
+        <span class="cm"># Case 3: 2 children — find inorder successor</span>
+        successor = node.right
+        <span class="kw">while</span> successor.left:         <span class="cm"># Go to smallest in right subtree</span>
+            successor = successor.left
+        node.val = successor.val       <span class="cm"># Copy successor's value up</span>
+        node.right = <span class="nm">self</span>._delete(node.right, successor.val)
+    <span class="kw">return</span> node</pre>
+              </div>
+              <div class="callout callout-exam"><strong>EXAM:</strong> Deleting node with 2 children → replace with inorder successor (smallest value in right subtree). This was Q5 in the S8 quiz and directly tested in past exam (P22).</div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Level-Order Traversal (BFS on Trees)</h3>
+              <p>Visit nodes <strong>level by level</strong> from top to bottom, left to right. Uses a <strong>queue</strong>. Also called Breadth-First Traversal on trees. (Course Outline topic)</p>
+              <div class="tree-visual">
+  Tree:       8
+             / \
+            3   10
+           / \    \
+          1   6    14
+
+  Level-Order: 8, 3, 10, 1, 6, 14   ← visits level by level</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — Level-Order Traversal</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">from</span> collections <span class="kw">import</span> deque
+
+<span class="kw">def</span> <span class="fn">level_order</span>(root):
+    <span class="kw">if not</span> root: <span class="kw">return</span> []
+    result, queue = [], <span class="fn">deque</span>([root])
+    <span class="kw">while</span> queue:
+        node = queue.popleft()
+        result.append(node.val)
+        <span class="kw">if</span> node.left:  queue.append(node.left)
+        <span class="kw">if</span> node.right: queue.append(node.right)
+    <span class="kw">return</span> result  <span class="cm"># [8, 3, 10, 1, 6, 14]</span></pre>
+              </div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Heaps — Min-Heap &amp; Max-Heap</h3>
+              <p>A <strong>heap</strong> is a complete binary tree satisfying the <em>heap property</em>:</p>
+              <div class="compare-grid">
+                <div class="compare-card">
+                  <h4 style="color:var(--green2);">Max-Heap</h4>
+                  <ul>
+                    <li>Parent ≥ all children</li>
+                    <li>Root = maximum element</li>
+                    <li>Used by Heap Sort (extract max repeatedly)</li>
+                    <li>From test P13: each node's value is <strong>larger than all its children</strong></li>
+                  </ul>
+                </div>
+                <div class="compare-card">
+                  <h4 style="color:var(--blue2);">Min-Heap</h4>
+                  <ul>
+                    <li>Parent ≤ all children</li>
+                    <li>Root = minimum element</li>
+                    <li>Used by Dijkstra's (priority queue = min-heap)</li>
+                    <li>Python's <code>heapq</code> is a min-heap by default</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tree-visual">
+  Max-Heap example:      Min-Heap example:
+       90                      4
+      /  \                   /   \
+    70    80               10     8
+   / \   /                / \
+  50  60 75             15   14
+
+  Insert: O(log n)  Delete max/min: O(log n)  Build heap: O(n)</div>
+            </div>
+
+            <div class="topic-block">
+              <h3>AVL Trees — Self-Balancing BST</h3>
+              <p>An <strong>AVL tree</strong> (Adelson-Velsky and Landis) is a BST that automatically maintains balance. After every insert/delete, it checks the <strong>balance factor</strong> of each node and performs <strong>rotations</strong> if needed.</p>
+              <p><strong>Balance Factor</strong> = height(left subtree) − height(right subtree). Must be in {−1, 0, +1} for every node. If it becomes ±2, one rotation (or double rotation) fixes it.</p>
+              <div class="tree-visual">
+  4 Rotation Types:
+
+  LL Rotation (single right rotate):
+  Unbalanced:      After rotation:
+      C               B
+     /               / \
+    B               A   C
+   /
+  A
+
+  RR Rotation (single left rotate):
+  Unbalanced:      After rotation:
+  A                   B
+   \                 / \
+    B               A   C
+     \
+      C
+
+  LR Rotation (left then right rotate):
+  Unbalanced:      After rotation:
+      C               B
+     /               / \
+    A               A   C
+     \
+      B
+
+  RL Rotation (right then left rotate):
+  Unbalanced:      After rotation:
+  A                   B
+   \                 / \
+    C               A   C
+   /
+  B</div>
+              <div class="callout callout-exam"><strong>EXAM:</strong> AVL balance factor = height(left) − height(right). Must be in {−1, 0, +1}. If |BF| = 2, apply rotation. LL imbalance → right rotate. RR imbalance → left rotate. LR → left then right. RL → right then left.</div>
+            </div>
+
+            <div class="topic-block">
+              <h3>BST Insertion Big-O Analysis</h3>
+              <p>From <strong>Practice Questions doc</strong>: "Analysis of insertion in an empty BST using Big-O notation (worst, average, best case)."</p>
+              <div class="table-wrap">
+                <table>
+                  <tr><th>Case</th><th>Scenario</th><th>Complexity</th><th>Example</th></tr>
+                  <tr>
+                    <td><strong style="color:var(--green2);">Best Case</strong></td>
+                    <td>Tree is perfectly balanced; insert hits empty spot after log n comparisons</td>
+                    <td class="ok code">O(log n)</td>
+                    <td>Inserting into balanced BST</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:var(--amber2);">Average Case</strong></td>
+                    <td>Random insertions; tree is reasonably balanced on average</td>
+                    <td class="ok code">O(log n)</td>
+                    <td>Random order insertions</td>
+                  </tr>
+                  <tr>
+                    <td><strong style="color:var(--red2);">Worst Case</strong></td>
+                    <td>Sorted input — tree degenerates to a linked list</td>
+                    <td class="bad code">O(n)</td>
+                    <td>Insert 1,2,3,4,5 in order</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout callout-exam"><strong>KEY INSIGHT:</strong> Inserting already-sorted values (1,2,3,...,n) into an empty BST creates a <em>right-skewed</em> chain — every node only has a right child. Search/insert takes O(n) just like a linked list. This is why AVL trees and balanced BSTs matter.</div>
+            </div>
+
+            <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+              <h3>📝 Past Exam Questions — Trees &amp; BST</h3>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What makes a tree a 'binary' tree? <span style="font-size:11px;color:var(--text3);">(Test P3)</span></p>
+              <p style="color:var(--green2);">✓ Each node has at most 2 children (left and/or right)</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Given Inorder = d,b,e,a,f,c,g and Preorder = a,b,d,e,c,f,g. Find the Postorder traversal. <span style="font-size:11px;color:var(--text3);">(Test P5 / P9)</span></p>
+              <p style="color:var(--green2);">✓ Postorder: d, e, b, f, g, c, a</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:6px;"><strong>Derivation:</strong> Preorder root = a. In Inorder, a splits: left={d,b,e}, right={f,c,g}. Preorder next in left={b,d,e} → root of left subtree = b. In left inorder, b splits: left={d}, right={e}. Left subtree postorder: d,e,b. Right subtree: preorder={c,f,g}, root=c, inorder splits f left, g right. Right postorder: f,g,c. Final: d,e,b,f,g,c,a.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Given Tree-1 and Tree-2, which traversal of Tree-1 produces the same sequence as which traversal of Tree-2? <span style="font-size:11px;color:var(--text3);">(Test P6)</span></p>
+              <p style="color:var(--green2);">✓ Postorder of Tree-1 = Inorder of Tree-2</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">This requires computing traversals for both given trees and comparing results. Know all three traversals (Pre/In/Post) thoroughly — this is a common multi-tree comparison question.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: "If a BST is not _____, it may be less efficient than a linear data structure." <span style="font-size:11px;color:var(--text3);">(Test P11)</span></p>
+              <p style="color:var(--green2);">✓ balanced</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">An unbalanced BST degrades to O(n) for search (skewed tree = linked list). A balanced BST guarantees O(log n). AVL trees and Red-Black trees maintain balance automatically.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Given Inorder = F,B,G,A,D,C,E. Find the Preorder traversal. <span style="font-size:11px;color:var(--text3);">(Test P17)</span></p>
+              <p style="color:var(--green2);">✓ Preorder: A, B, F, G, D, C, E</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:6px;"><strong>Reconstruction:</strong> From the given BST (assumed root=A), Inorder=FBGADCE means: left of A = {F,B,G}, right of A = {D,C,E}. Left subtree root=B (from tree structure): B's inorder {F,B,G} → F left, G right. Right subtree: D then C,E. Preorder (root→left→right): A,B,F,G,D,C,E.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Given Postorder = 2,7,6,10,9,8,15,17,20,19,16,12. Find the Preorder traversal. <span style="font-size:11px;color:var(--text3);">(Test P20)</span></p>
+              <p style="color:var(--green2);">✓ Preorder: 12, 8, 6, 2, 7, 9, 10, 16, 15, 19, 17, 20</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;"><strong>Method:</strong> Postorder last element = root (12). Then reconstruct BST: elements &lt;12 go left, elements &gt;12 go right. Keep subdividing. Postorder of left subtree = {2,7,6,10,9,8} → left root=8. Postorder of right subtree = {15,17,20,19,16} → right root=16. Continue recursively to build full tree, then read preorder.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: ⚠️ TEST ERROR — Postorder traversal visits nodes in which order? <span style="font-size:11px;color:var(--text3);">(Test P22)</span></p>
+              <p style="color:var(--red2);">⚠️ The test answer had an error — the listed "correct" answer described Preorder, not Postorder!</p>
+              <p style="color:var(--green2);">✓ REAL correct answer: Left subtree → Right subtree → Root (L-R-Root)</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Preorder = Root→Left→Right. Inorder = Left→Root→Right. Postorder = Left→Right→Root. If the test gave "Root→Left→Right" as the answer for postorder — that is the definition of PREORDER. Do not be confused by this test error.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Write a routine for BST node deletion. What are the three cases? <span style="font-size:11px;color:var(--text3);">(Practice Questions)</span></p>
+              <p style="color:var(--green2);">✓ Three cases for BST delete:</p>
+              <ol style="color:var(--text2);font-size:13px;margin-bottom:14px;">
+                <li><strong>Node is a leaf (no children):</strong> Simply remove the node.</li>
+                <li><strong>Node has one child:</strong> Replace the node with its single child.</li>
+                <li><strong>Node has two children:</strong> Find the inorder successor (smallest node in right subtree). Replace the node's data with the successor's data. Delete the successor from the right subtree (which is case 1 or 2).</li>
+              </ol>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the Big-O for BST insertion? <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q1b / Practice Questions)</span></p>
+              <p style="color:var(--green2);">✓ Best case: O(log n) | Average case: O(log n) | Worst case: O(n)</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:0;">Worst case O(n) occurs when inserting sorted values (e.g., 1,2,3,4,5) — creates a skewed tree of height n. Best/average assumes a reasonably balanced tree of height log n.</p>
+            </div>
+
             <div class="quiz-block">
               <div class="quiz-title">Quick Quiz — Section 8</div>
               <div id="quiz-s8"></div>
             </div>
+
+            <div class="toggle-section">
+              <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Trees &amp; BST</button>
+              <div class="toggle-content">
+                <h4>AVL Trees — Detailed Rotations</h4>
+                <p>AVL trees maintain balance factor (BF = height(left) − height(right)) in {-1, 0, 1} for every node. When BF goes outside this range after insert/delete, rotations restore balance.</p>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Imbalance Type</th><th>Condition</th><th>Fix</th></tr>
+                    <tr><td>LL (Left-Left)</td><td>BF=+2 at node, BF=+1 at left child</td><td>Single Right Rotation at node</td></tr>
+                    <tr><td>RR (Right-Right)</td><td>BF=-2 at node, BF=-1 at right child</td><td>Single Left Rotation at node</td></tr>
+                    <tr><td>LR (Left-Right)</td><td>BF=+2 at node, BF=-1 at left child</td><td>Left Rotation at left child, then Right Rotation at node</td></tr>
+                    <tr><td>RL (Right-Left)</td><td>BF=-2 at node, BF=+1 at right child</td><td>Right Rotation at right child, then Left Rotation at node</td></tr>
+                  </table>
+                </div>
+                <pre class="code-block"><span class="co"># Right Rotation (LL case)</span>
+<span class="kw">def</span> <span class="fn">right_rotate</span>(z):
+    y = z.left          <span class="co"># y is z's left child</span>
+    T3 = y.right        <span class="co"># T3 is y's right subtree</span>
+    y.right = z         <span class="co"># y becomes new root</span>
+    z.left = T3         <span class="co"># T3 becomes z's left subtree</span>
+    update_heights(z, y)
+    <span class="kw">return</span> y            <span class="co"># y is new subtree root</span></pre>
+                <h4>Expression Trees</h4>
+                <p>An expression tree represents an arithmetic expression as a binary tree. Leaves = operands; internal nodes = operators.</p>
+                <ul>
+                  <li><strong>Inorder traversal:</strong> produces Infix expression (may need parentheses)</li>
+                  <li><strong>Preorder traversal:</strong> produces Prefix (Polish) expression</li>
+                  <li><strong>Postorder traversal:</strong> produces Postfix (Reverse Polish) expression</li>
+                </ul>
+                <p>Example: (a + b) * c → Postorder gives "a b + c *" (postfix). Preorder gives "* + a b c" (prefix).</p>
+                <h4>B-Trees (Brief Overview)</h4>
+                <p>Generalization of BST where each node can have multiple keys and children. Used in databases and file systems (ext4, NTFS use B+ trees). Properties:</p>
+                <ul>
+                  <li>Every node has at most m children (order m)</li>
+                  <li>All leaves at same depth (perfectly balanced)</li>
+                  <li>Minimizes disk I/O by keeping tree height small</li>
+                  <li>Search/Insert/Delete: O(log n)</li>
+                  <li>B+ Tree variant: all data in leaves, internal nodes are index-only</li>
+                </ul>
+                <h4>Heap vs BST</h4>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Property</th><th>BST</th><th>Heap</th></tr>
+                    <tr><td>Ordering</td><td>Left &lt; Root &lt; Right</td><td>Parent ≥ children (max-heap)</td></tr>
+                    <tr><td>Find Min/Max</td><td>O(log n) — traverse to leftmost/rightmost</td><td>O(1) — always at root</td></tr>
+                    <tr><td>Search arbitrary</td><td>O(log n) balanced</td><td>O(n) — no ordering guarantee</td></tr>
+                    <tr><td>Insert</td><td>O(log n) balanced</td><td>O(log n)</td></tr>
+                    <tr><td>Best use</td><td>General search, range queries</td><td>Priority queue, heap sort</td></tr>
+                  </table>
+                </div>
+                <p><strong>Further Reading:</strong>
+                  <a href="https://www.geeksforgeeks.org/avl-tree-set-1-insertion/" target="_blank" rel="noopener">GFG: AVL Trees</a> |
+                  <a href="https://www.geeksforgeeks.org/expression-tree/" target="_blank" rel="noopener">GFG: Expression Trees</a> |
+                  <a href="https://www.geeksforgeeks.org/introduction-of-b-tree-2/" target="_blank" rel="noopener">GFG: B-Trees</a>
+                </p>
+              </div>
+            </div>
+
             <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s8')">✓ Mark Section 8
                 Complete</button></div>
             <div class="section-nav">
@@ -3238,6 +4215,65 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
               </div>
             </div>
             <div class="topic-block">
+              <h3>Directed vs Undirected — Visual Comparison</h3>
+              <div class="diagram">
+                <svg viewBox="0 0 560 180" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace" font-size="11">
+                  <!-- Left panel: Directed Graph -->
+                  <text x="130" y="18" text-anchor="middle" fill="#9090a8" font-size="12" font-weight="700">Directed Graph</text>
+                  <!-- Vertices: A(top-left), B(top-right), C(bottom-left), D(bottom-right) -->
+                  <!-- Edges with arrows -->
+                  <!-- A→B -->
+                  <line x1="88" y1="52" x2="168" y2="52" stroke="#7c3aed" stroke-width="2"/>
+                  <polygon points="168,47 178,52 168,57" fill="#7c3aed"/>
+                  <!-- A→C -->
+                  <line x1="78" y1="68" x2="78" y2="128" stroke="#7c3aed" stroke-width="2"/>
+                  <polygon points="73,128 78,138 83,128" fill="#7c3aed"/>
+                  <!-- B→D -->
+                  <line x1="188" y1="68" x2="188" y2="128" stroke="#7c3aed" stroke-width="2"/>
+                  <polygon points="183,128 188,138 193,128" fill="#7c3aed"/>
+                  <!-- C→D (but NOT D→C) -->
+                  <line x1="94" y1="148" x2="170" y2="148" stroke="#7c3aed" stroke-width="2"/>
+                  <polygon points="170,143 180,148 170,153" fill="#7c3aed"/>
+                  <!-- Nodes -->
+                  <circle cx="78" cy="52" r="18" fill="rgba(124,58,237,0.25)" stroke="#7c3aed" stroke-width="2"/>
+                  <text x="78" y="57" text-anchor="middle" fill="#c4b5fd" font-weight="700">A</text>
+                  <circle cx="188" cy="52" r="18" fill="rgba(124,58,237,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+                  <text x="188" y="57" text-anchor="middle" fill="#c4b5fd" font-weight="700">B</text>
+                  <circle cx="78" cy="148" r="18" fill="rgba(124,58,237,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+                  <text x="78" y="153" text-anchor="middle" fill="#c4b5fd" font-weight="700">C</text>
+                  <circle cx="188" cy="148" r="18" fill="rgba(124,58,237,0.15)" stroke="#a78bfa" stroke-width="1.5"/>
+                  <text x="188" y="153" text-anchor="middle" fill="#c4b5fd" font-weight="700">D</text>
+                  <!-- In/out degree callout for A -->
+                  <text x="28" y="48" fill="#f59e0b" font-size="9">out-deg=2</text>
+                  <text x="28" y="60" fill="#3b82f6" font-size="9">in-deg=0</text>
+                  <!-- Note -->
+                  <text x="130" y="175" text-anchor="middle" fill="#5a5a70" font-size="10">A→B ≠ B→A (one-way)</text>
+                  <!-- Divider -->
+                  <line x1="280" y1="20" x2="280" y2="170" stroke="#2a2a38" stroke-width="1" stroke-dasharray="4,3"/>
+                  <!-- Right panel: Undirected Graph -->
+                  <text x="420" y="18" text-anchor="middle" fill="#9090a8" font-size="12" font-weight="700">Undirected Graph</text>
+                  <!-- Edges (no arrows) -->
+                  <line x1="368" y1="52" x2="448" y2="52" stroke="#10b981" stroke-width="2"/>
+                  <line x1="358" y1="68" x2="358" y2="128" stroke="#10b981" stroke-width="2"/>
+                  <line x1="468" y1="68" x2="468" y2="128" stroke="#10b981" stroke-width="2"/>
+                  <line x1="374" y1="148" x2="450" y2="148" stroke="#10b981" stroke-width="2"/>
+                  <!-- Nodes -->
+                  <circle cx="358" cy="52" r="18" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+                  <text x="358" y="57" text-anchor="middle" fill="#6ee7b7" font-weight="700">A</text>
+                  <circle cx="468" cy="52" r="18" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="468" y="57" text-anchor="middle" fill="#6ee7b7" font-weight="700">B</text>
+                  <circle cx="358" cy="148" r="18" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="358" y="153" text-anchor="middle" fill="#6ee7b7" font-weight="700">C</text>
+                  <circle cx="468" cy="148" r="18" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="468" y="153" text-anchor="middle" fill="#6ee7b7" font-weight="700">D</text>
+                  <!-- Degree callout for A -->
+                  <text x="305" y="50" fill="#10b981" font-size="9">degree=2</text>
+                  <text x="305" y="62" fill="#5a5a70" font-size="9">(no in/out)</text>
+                  <text x="420" y="175" text-anchor="middle" fill="#5a5a70" font-size="10">A—B means both A→B and B→A</text>
+                </svg>
+              </div>
+            </div>
+            <div class="topic-block">
               <h3>🔴 DFS — Depth First Search</h3>
               <p>Go as <strong>deep as possible</strong> along one path before backtracking. Uses a
                 <strong>stack</strong> (or recursion).
@@ -3301,10 +4337,113 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
                 with adjacency list, O(V²) with matrix. "The number of connected components in G is (E - V)" is WRONG —
                 this was the incorrect statement in your test.</div>
             </div>
+            <div class="topic-block">
+              <h3>Graph Properties — Degree, Paths &amp; Edge Counts</h3>
+              <div class="compare-grid">
+                <div class="compare-card">
+                  <h4 style="color:var(--blue2);">Undirected Graph</h4>
+                  <ul>
+                    <li><strong>Degree</strong> of vertex v = number of edges incident to v</li>
+                    <li>Sum of all degrees = 2|E| (each edge counted at both ends)</li>
+                    <li><strong>Max edges</strong> for n vertices: <code>n(n−1)/2</code></li>
+                    <li>A complete graph Kₙ has n(n−1)/2 edges</li>
+                  </ul>
+                </div>
+                <div class="compare-card">
+                  <h4 style="color:var(--green2);">Directed Graph (Digraph)</h4>
+                  <ul>
+                    <li><strong>In-degree</strong> of v = edges pointing INTO v</li>
+                    <li><strong>Out-degree</strong> of v = edges going OUT of v</li>
+                    <li>Sum of all in-degrees = Sum of all out-degrees = |E|</li>
+                    <li><strong>Max edges</strong> for n vertices: <code>n(n−1)</code></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="callout callout-exam"><strong>Practical Assignment Q2a:</strong> "Let G be a connected graph with n vertices. What is the maximum number of edges?" Answer: <strong>n(n−1)/2</strong>. This is achieved when every vertex is connected to every other vertex (complete graph). Example: 4 vertices → max 4×3/2 = 6 edges.</div>
+              <h4>Connected vs. Disconnected Graphs</h4>
+              <p>A graph is <strong>connected</strong> if there is a path between every pair of vertices. A <strong>disconnected</strong> graph has at least one pair of vertices with no path between them. DFS/BFS can be used to test connectivity — if a single DFS from any vertex visits all vertices, the graph is connected.</p>
+              <div class="callout callout-exam"><strong>EXAM (from test P21):</strong> Which statement about DFS is NOT correct? → <strong>"The number of connected components in G is (E − V)"</strong> — this is FALSE. The number of connected components found by DFS is not a simple formula involving E and V.</div>
+            </div>
+
+            <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+              <h3>📝 Past Exam Questions — Graphs</h3>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which of the following is NOT correct about DFS (Depth First Search)? <span style="font-size:11px;color:var(--text3);">(Test P21)</span></p>
+              <p style="color:var(--red2);">✗ Common wrong answer: "DFS uses a stack" — this IS correct (and therefore not the wrong statement)</p>
+              <p style="color:var(--green2);">✓ The FALSE statement: "The number of connected components in G equals E − V"</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">DFS does use a stack (either explicitly or via recursion). DFS does visit every vertex reachable from the source. The formula "components = E − V" is simply wrong — there is no such universal formula.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: A connected graph with n vertices has a maximum of how many edges? <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q2a)</span></p>
+              <p style="color:var(--green2);">✓ n(n−1)/2</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">This is the complete graph K_n. Every vertex connects to every other vertex: vertex 1 connects to n−1 others, vertex 2 to n−2 (excluding already-counted pair), etc. Sum = (n−1)+(n−2)+...+1 = n(n−1)/2. Example: n=4 → 4×3/2 = 6 edges maximum.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Compare DFS and BFS — when would you use each? <span style="font-size:11px;color:var(--text3);">(Practice Questions / Course Outline)</span></p>
+              <div class="table-wrap" style="margin-top:8px;margin-bottom:14px;">
+                <table>
+                  <tr><th>Property</th><th>DFS</th><th>BFS</th></tr>
+                  <tr><td>Data structure</td><td>Stack (or recursion)</td><td>Queue</td></tr>
+                  <tr><td>Time complexity</td><td>O(V+E)</td><td>O(V+E)</td></tr>
+                  <tr><td>Space complexity</td><td>O(V) worst (deep recursion)</td><td>O(V) (queue width)</td></tr>
+                  <tr><td>Finds shortest path?</td><td>No (unweighted)</td><td>Yes (unweighted)</td></tr>
+                  <tr><td>Memory for wide graphs</td><td>Better</td><td>Worse</td></tr>
+                  <tr><td>Use case</td><td>Cycle detection, topological sort, maze solving</td><td>Shortest path, level-order traversal, network broadcast</td></tr>
+                </table>
+              </div>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: What is the difference between a directed and undirected graph? <span style="font-size:11px;color:var(--text3);">(Theory / Course Outline)</span></p>
+              <p style="color:var(--green2);">✓ Directed (digraph): edges have direction (A→B ≠ B→A). Undirected: edges are bidirectional (A—B means both A→B and B→A).</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:0;">In-degree = number of edges coming INTO a vertex. Out-degree = number of edges going OUT. In undirected graphs, in-degree = out-degree = degree. A directed graph can be strongly connected (path exists between every pair in both directions) or weakly connected (only when ignoring direction).</p>
+            </div>
+
             <div class="quiz-block">
               <div class="quiz-title">Quick Quiz — Section 9</div>
               <div id="quiz-s9"></div>
             </div>
+
+            <div class="toggle-section">
+              <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Graphs &amp; Traversals</button>
+              <div class="toggle-content">
+                <h4>Strongly Connected Components (SCCs)</h4>
+                <p>In a <strong>directed graph</strong>, an SCC is a maximal set of vertices such that there is a path from each vertex to every other vertex in the set.</p>
+                <ul>
+                  <li><strong>Kosaraju's Algorithm:</strong> (1) Do DFS, push vertices to stack in finish order. (2) Transpose the graph (reverse all edges). (3) Pop vertices from stack, do DFS on transposed graph — each DFS tree is an SCC. Time: O(V+E).</li>
+                  <li><strong>Tarjan's Algorithm:</strong> Single DFS using discovery time and low values. Time: O(V+E).</li>
+                  <li><strong>Real use:</strong> Finding circular dependencies in packages, detecting deadlocks, analyzing social network communities.</li>
+                </ul>
+                <h4>Topological Sort</h4>
+                <p>Linear ordering of vertices in a DAG (Directed Acyclic Graph) such that for every directed edge u→v, u comes before v. Only possible on DAGs (no cycles).</p>
+                <ul>
+                  <li><strong>DFS-based:</strong> Run DFS; add vertex to stack when DFS finishes for it. Reverse stack = topological order. Time: O(V+E).</li>
+                  <li><strong>Kahn's Algorithm (BFS-based):</strong> Use in-degree. Repeatedly remove vertices with in-degree 0. Time: O(V+E).</li>
+                  <li><strong>Applications:</strong> Build systems (Makefile dependencies), course prerequisite scheduling, task scheduling with dependencies.</li>
+                </ul>
+                <h4>Graph Representations Compared</h4>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Operation</th><th>Adjacency Matrix</th><th>Adjacency List</th></tr>
+                    <tr><td>Space</td><td>O(V²)</td><td>O(V+E)</td></tr>
+                    <tr><td>Check edge (u,v)</td><td>O(1)</td><td>O(degree(u))</td></tr>
+                    <tr><td>Get all neighbours of u</td><td>O(V)</td><td>O(degree(u))</td></tr>
+                    <tr><td>Add vertex</td><td>O(V²) — resize</td><td>O(1)</td></tr>
+                    <tr><td>Best for</td><td>Dense graphs, frequent edge queries</td><td>Sparse graphs, traversals</td></tr>
+                  </table>
+                </div>
+                <h4>Graph Applications</h4>
+                <ul>
+                  <li><strong>GPS/Maps:</strong> Road network as weighted directed graph. Dijkstra/A* for shortest path.</li>
+                  <li><strong>Social Networks:</strong> People = vertices, friendships = edges. BFS for degrees of separation. Community detection using SCC.</li>
+                  <li><strong>Web Crawling:</strong> Web pages = vertices, hyperlinks = directed edges. BFS to crawl. Google PageRank uses directed graph analysis.</li>
+                  <li><strong>Dependency Resolution:</strong> DAG + topological sort for package managers (npm, pip), build systems.</li>
+                  <li><strong>Bipartite matching:</strong> Job assignment, stable matching (Gale-Shapley).</li>
+                </ul>
+                <p><strong>Further Reading:</strong>
+                  <a href="https://www.geeksforgeeks.org/strongly-connected-components/" target="_blank" rel="noopener">GFG: Strongly Connected Components</a> |
+                  <a href="https://www.geeksforgeeks.org/topological-sorting/" target="_blank" rel="noopener">GFG: Topological Sorting</a> |
+                  <a href="https://www.geeksforgeeks.org/graph-and-its-representations/" target="_blank" rel="noopener">GFG: Graph Representations</a>
+                </p>
+              </div>
+            </div>
+
             <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s9')">✓ Mark Section 9
                 Complete</button></div>
             <div class="section-nav">
@@ -3385,6 +4524,61 @@ matrix = [[<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">
                 Pick B(3): B→D = 3+2=5 > 2 → no update
                 Pick C(3): C→E = 3+1=4 = 4 → no update
                 Final: A=1, B=3, C=3, D=2, E=4</div>
+              <h4>Dijkstra Iteration Table — Step-by-Step (Test Exam Question)</h4>
+              <p>Graph: S→A(1), S→B(5), A→B(2), A→C(2), A→D(1), C→E(1), D→E(2). Source = S.</p>
+              <div class="table-wrap">
+                <table>
+                  <tr>
+                    <th>Iteration</th><th>Current</th>
+                    <th>dist[A]</th><th>dist[B]</th><th>dist[C]</th><th>dist[D]</th><th>dist[E]</th>
+                  </tr>
+                  <tr>
+                    <td>Init</td><td>—</td>
+                    <td>∞</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td>
+                  </tr>
+                  <tr>
+                    <td>1</td><td style="color:var(--green2);font-weight:700;">S (0)</td>
+                    <td style="color:var(--amber2);font-weight:700;">1 ↓</td>
+                    <td style="color:var(--amber2);font-weight:700;">5 ↓</td>
+                    <td>∞</td><td>∞</td><td>∞</td>
+                  </tr>
+                  <tr>
+                    <td>2</td><td style="color:var(--green2);font-weight:700;">A (1)</td>
+                    <td style="color:var(--green2);">1 ✓</td>
+                    <td style="color:var(--amber2);font-weight:700;">3 ↓</td>
+                    <td style="color:var(--amber2);font-weight:700;">3 ↓</td>
+                    <td style="color:var(--amber2);font-weight:700;">2 ↓</td>
+                    <td>∞</td>
+                  </tr>
+                  <tr>
+                    <td>3</td><td style="color:var(--green2);font-weight:700;">D (2)</td>
+                    <td style="color:var(--green2);">1 ✓</td><td>3</td><td>3</td>
+                    <td style="color:var(--green2);">2 ✓</td>
+                    <td style="color:var(--amber2);font-weight:700;">4 ↓</td>
+                  </tr>
+                  <tr>
+                    <td>4</td><td style="color:var(--green2);font-weight:700;">B (3)</td>
+                    <td style="color:var(--green2);">1 ✓</td>
+                    <td style="color:var(--green2);">3 ✓</td>
+                    <td>3</td><td style="color:var(--green2);">2 ✓</td><td>4</td>
+                  </tr>
+                  <tr>
+                    <td>5</td><td style="color:var(--green2);font-weight:700;">C (3)</td>
+                    <td style="color:var(--green2);">1 ✓</td><td style="color:var(--green2);">3 ✓</td>
+                    <td style="color:var(--green2);">3 ✓</td><td style="color:var(--green2);">2 ✓</td>
+                    <td>4 (no update)</td>
+                  </tr>
+                  <tr style="background:rgba(16,185,129,0.06);">
+                    <td><strong>Final</strong></td><td>—</td>
+                    <td style="color:var(--green2);font-weight:700;">1</td>
+                    <td style="color:var(--green2);font-weight:700;">3</td>
+                    <td style="color:var(--green2);font-weight:700;">3</td>
+                    <td style="color:var(--green2);font-weight:700;">2</td>
+                    <td style="color:var(--green2);font-weight:700;">4</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout callout-exam"><strong>Test P3 direct question:</strong> Show step-by-step Dijkstra from S. Answers: dist[A]=1, dist[B]=3, dist[C]=3, dist[D]=2, dist[E]=4.</div>
               <div class="code-block">
                 <div class="code-header"><span class="code-lang">Python — Dijkstra's Algorithm</span><button
                     class="code-copy" onclick="copyCode(this)">copy</button></div>
@@ -3528,10 +4722,129 @@ graph = {
               <div class="callout callout-exam"><strong>EXAM:</strong> Bellman-Ford works with: Graphs with negative
                 weights ✓, Directed ✓, Weighted ✓, Undirected ✓. Dijkstra does NOT work with negative weights.</div>
             </div>
+            <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+              <h3>📝 Past Exam Questions — Shortest Paths &amp; MST</h3>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Using Dijkstra's algorithm on the given graph with source b, what is the minimum cost to reach f? <span style="font-size:11px;color:var(--text3);">(Test P2)</span></p>
+              <p style="color:var(--green2);">✓ 6</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Trace all paths from b to f, updating shortest distances at each step. The shortest path has cost 6.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Show step-by-step Dijkstra's algorithm from source S on a graph with vertices S,a,b,c,d,e. <span style="font-size:11px;color:var(--text3);">(Test P3)</span></p>
+              <p style="color:var(--green2);">✓ Final shortest distances: A=1, B=3, C=3, D=2, E=4</p>
+              <div class="table-wrap" style="margin-top:8px;margin-bottom:14px;">
+                <table>
+                  <tr><th>Step</th><th>Vertex</th><th>dist[A]</th><th>dist[B]</th><th>dist[C]</th><th>dist[D]</th><th>dist[E]</th></tr>
+                  <tr><td>Init</td><td>S</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td></tr>
+                  <tr><td>1</td><td>S</td><td class="ok">1</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td></tr>
+                  <tr><td>2</td><td>A</td><td class="good">1✓</td><td>3</td><td>∞</td><td class="ok">2</td><td>∞</td></tr>
+                  <tr><td>3</td><td>D</td><td class="good">1✓</td><td>3</td><td class="ok">3</td><td class="good">2✓</td><td>∞</td></tr>
+                  <tr><td>4</td><td>B/C</td><td class="good">1✓</td><td class="good">3✓</td><td class="good">3✓</td><td class="good">2✓</td><td class="ok">4</td></tr>
+                  <tr><td>5</td><td>E</td><td class="good">1✓</td><td class="good">3✓</td><td class="good">3✓</td><td class="good">2✓</td><td class="good">4✓</td></tr>
+                </table>
+              </div>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Dijkstra's algorithm does NOT work correctly with: <span style="font-size:11px;color:var(--text3);">(Test P8)</span></p>
+              <p style="color:var(--green2);">✓ Graphs with negative weight edges</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Dijkstra assumes once a node is "finalized" it has the shortest distance. Negative weights can violate this. Use Bellman-Ford for negative-weight graphs.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Dijkstra's algorithm is designed to solve: <span style="font-size:11px;color:var(--text3);">(Test P14)</span></p>
+              <p style="color:var(--green2);">✓ Single Source Shortest Path (SSSP) — from one source vertex to all others</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Dijkstra's algorithm is a prime example of: <span style="font-size:11px;color:var(--text3);">(Test P16)</span></p>
+              <p style="color:var(--green2);">✓ Greedy algorithm — at each step it picks the unvisited vertex with the smallest known distance</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Find the Minimum Spanning Tree using Kruskal's algorithm. What is the total MST weight? <span style="font-size:11px;color:var(--text3);">(Test P10)</span></p>
+              <p style="color:var(--green2);">✓ Total MST weight = 19</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Sort all edges by weight, add each edge if it doesn't create a cycle (union-find). Sum the selected edges until n−1 edges are chosen. The selected edges sum to 19.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Show Kruskal's step-by-step for graph with vertices s,a,b,c,d,e. <span style="font-size:11px;color:var(--text3);">(Test P19)</span></p>
+              <p style="color:var(--green2);">✓ Edges selected: SA=1, AD=1, CE=1, AC=2, AB=2 → Total MST weight = 7</p>
+              <div class="table-wrap" style="margin-top:8px;margin-bottom:14px;">
+                <table>
+                  <tr><th>Step</th><th>Edge</th><th>Weight</th><th>Action</th><th>Running Total</th></tr>
+                  <tr><td>1</td><td>S-A</td><td>1</td><td class="good">Add ✓</td><td>1</td></tr>
+                  <tr><td>2</td><td>A-D</td><td>1</td><td class="good">Add ✓</td><td>2</td></tr>
+                  <tr><td>3</td><td>C-E</td><td>1</td><td class="good">Add ✓</td><td>3</td></tr>
+                  <tr><td>4</td><td>A-C</td><td>2</td><td class="good">Add ✓</td><td>5</td></tr>
+                  <tr><td>5</td><td>A-B</td><td>2</td><td class="good">Add ✓</td><td>7</td></tr>
+                </table>
+              </div>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Find the shortest path from A to E in the directed graph: a→b=1, a→c=3, c→e=2, c→d=4, d→b=5, b→e=6, d→e=1. <span style="font-size:11px;color:var(--text3);">(Test P21)</span></p>
+              <p style="color:var(--green2);">✓ Shortest path: a → c → e, Cost = 3 + 2 = 5</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Paths: a→b→e=7, a→c→e=5, a→c→d→e=8. Minimum is a-c-e with cost 5.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Bellman-Ford algorithm works with which types of graphs? <span style="font-size:11px;color:var(--text3);">(Test P23)</span></p>
+              <p style="color:var(--green2);">✓ Weighted ✓, Directed ✓, Undirected ✓, Negative weights ✓</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Unlike Dijkstra, Bellman-Ford handles all of these. It relaxes all edges V−1 times. Can also detect negative weight cycles (cycle where total weight is negative).</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Kruskal's algorithm can work on disconnected graphs? <span style="font-size:11px;color:var(--text3);">(Test P22)</span></p>
+              <p style="color:var(--green2);">✓ TRUE — Kruskal finds a Minimum Spanning Forest (one MST per connected component)</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Kruskal's algorithm is better suited for dense graphs than Prim's? <span style="font-size:11px;color:var(--text3);">(Test P17)</span></p>
+              <p style="color:var(--green2);">✓ FALSE — Prim's is better for dense graphs. Kruskal's is better for sparse graphs.</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Kruskal: O(E log E) — dominated by edge sorting, efficient when E is small (sparse). Prim with priority queue: O(E log V) — efficient when E is large (dense).</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which algorithms solve the Shortest Path problem? <span style="font-size:11px;color:var(--text3);">(Test P19)</span></p>
+              <p style="color:var(--green2);">✓ Dijkstra's algorithm AND Bellman-Ford algorithm</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Dijkstra: single-source, non-negative weights, O(E log V). Bellman-Ford: single-source, any weights (including negative), O(V×E). Floyd-Warshall: all-pairs shortest path, O(V³).</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Describe Dijkstra's algorithm for finding shortest path with an example. <span style="font-size:11px;color:var(--text3);">(Theory Assignment Q2e)</span></p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:6px;"><strong>Algorithm:</strong> 1) Initialize all distances to ∞, source to 0. 2) Add source to priority queue. 3) While queue not empty: extract min-distance vertex v, for each neighbor u with edge weight w: if dist[v]+w &lt; dist[u] → update dist[u] = dist[v]+w (relaxation). 4) Repeat until all vertices processed.</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:0;"><strong>Properties:</strong> Greedy algorithm. Works only with non-negative weights. Time: O(E log V) with binary heap. Solves single-source shortest path to ALL other vertices simultaneously.</p>
+            </div>
+
             <div class="quiz-block">
               <div class="quiz-title">Quick Quiz — Section 10</div>
               <div id="quiz-s10"></div>
             </div>
+
+            <div class="toggle-section">
+              <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Shortest Paths &amp; MST</button>
+              <div class="toggle-content">
+                <h4>Dijkstra's Algorithm — Time Complexity Analysis</h4>
+                <p>The complexity of Dijkstra depends on the data structure used for the priority queue:</p>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Data Structure</th><th>Extract-Min</th><th>Decrease-Key</th><th>Total Complexity</th></tr>
+                    <tr><td>Array (simple)</td><td>O(V)</td><td>O(1)</td><td>O(V²)</td></tr>
+                    <tr><td>Binary Heap</td><td>O(log V)</td><td>O(log V)</td><td>O(E log V)</td></tr>
+                    <tr><td>Fibonacci Heap</td><td>O(log V)</td><td>O(1) amortized</td><td>O(E + V log V)</td></tr>
+                  </table>
+                </div>
+                <p>O(V²) with array is better for dense graphs (E ≈ V²). O(E log V) with binary heap is better for sparse graphs (E ≈ V).</p>
+                <h4>Floyd-Warshall — All-Pairs Shortest Path</h4>
+                <p>Finds shortest paths between <em>all</em> pairs of vertices. Uses dynamic programming with a 2D table.</p>
+                <ul>
+                  <li><strong>Time:</strong> O(V³) — three nested loops over all vertices</li>
+                  <li><strong>Space:</strong> O(V²) for the distance matrix</li>
+                  <li><strong>Works with:</strong> Negative weights (but not negative cycles)</li>
+                  <li><strong>Recurrence:</strong> dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]) for each intermediate vertex k</li>
+                  <li><strong>Use case:</strong> When you need ALL pairwise shortest paths, not just from one source</li>
+                </ul>
+                <h4>MST Algorithms Comparison</h4>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Algorithm</th><th>Approach</th><th>Complexity</th><th>Best For</th></tr>
+                    <tr><td>Kruskal's</td><td>Sort edges, union-find</td><td>O(E log E)</td><td>Sparse graphs, disconnected graphs</td></tr>
+                    <tr><td>Prim's</td><td>Grow tree from source</td><td>O(E log V) with heap</td><td>Dense graphs</td></tr>
+                  </table>
+                </div>
+                <h4>Real-World Applications</h4>
+                <ul>
+                  <li><strong>GPS/Navigation (Dijkstra):</strong> Google Maps uses variants of Dijkstra to find shortest driving routes. A* (heuristic extension of Dijkstra) is used for faster routing.</li>
+                  <li><strong>Network Routing (Dijkstra/Bellman-Ford):</strong> OSPF routing protocol uses Dijkstra. BGP uses Bellman-Ford for inter-domain routing.</li>
+                  <li><strong>MST (Kruskal/Prim):</strong> Designing minimum-cost electrical grids, laying fiber optic cables, designing road networks connecting cities at minimum cost.</li>
+                  <li><strong>Bellman-Ford:</strong> Used in RIP (Routing Information Protocol). Can detect routing loops (negative cycles).</li>
+                </ul>
+                <p><strong>Further Reading:</strong>
+                  <a href="https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/" target="_blank" rel="noopener">GFG: Dijkstra's Algorithm</a> |
+                  <a href="https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/" target="_blank" rel="noopener">GFG: Floyd-Warshall</a> |
+                  <a href="https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/" target="_blank" rel="noopener">GFG: Kruskal's MST</a>
+                </p>
+              </div>
+            </div>
+
             <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s10')">✓ Mark Section 10
                 Complete</button></div>
             <div class="section-nav">
@@ -3759,6 +5072,55 @@ arr = [<span class="nm">1</span>,<span class="nm">3</span>,<span class="nm">5</s
               </div>
             </div>
 
+            <div class="topic-block">
+              <h3>Binary Search — C-Style Pseudocode Routine</h3>
+              <p>From <strong>Practical Assignment Q1a</strong>: "Write a C routine for binary search for an element in an array sorted in ascending order." Here is the complete implementation with pseudocode and Python equivalent.</p>
+              <div class="tree-visual">
+  ALGORITHM BinarySearch(arr, n, target):
+    low ← 0
+    high ← n - 1
+    WHILE low ≤ high DO
+      mid ← (low + high) / 2
+      IF arr[mid] = target THEN
+        RETURN mid          // Found at index mid
+      ELSE IF arr[mid] &lt; target THEN
+        low ← mid + 1      // Search right half
+      ELSE
+        high ← mid - 1     // Search left half
+      END IF
+    END WHILE
+    RETURN -1               // Not found</div>
+              <div class="callout callout-info"><strong>Big-O for BST Insertion (Practical Q1b):</strong> If numbers 1..n are inserted into an initially-empty BST randomly: <strong>Average height = O(log n)</strong>. Best case (balanced): O(log n). Worst case (already sorted, degenerates to linked list): <strong>O(n)</strong>. The average-case analysis uses the fact that random insertions give expected height 1.39 log₂ n ≈ O(log n).</div>
+            </div>
+
+            <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+              <h3>📝 Past Exam &amp; Assignment Questions — Section 11</h3>
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: The worst case in Linear Search occurs when: <span style="font-size:11px;color:var(--text3);">(Test P4)</span></p>
+              <p style="color:var(--green2);">✓ The item to be searched is either in the last position OR not in the array at all</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Both scenarios force the algorithm to scan all n elements before concluding. Complexity: O(n).</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: The average case in Linear Search occurs when: <span style="font-size:11px;color:var(--text3);">(Test P8)</span></p>
+              <p style="color:var(--green2);">✓ The item to be searched is somewhere in the middle of the array</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">On average, linear search will scan n/2 elements. Complexity: O(n/2) = O(n). Sequential/linear search = same thing.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Worst-case time complexity of linear search? <span style="font-size:11px;color:var(--text3);">(Test P12)</span></p>
+              <p style="color:var(--green2);">✓ O(n)</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Linear search is also called: <span style="font-size:11px;color:var(--text3);">(Test P15)</span></p>
+              <p style="color:var(--green2);">✓ Sequential search</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Necessary condition for using binary search: <span style="font-size:11px;color:var(--text3);">(Test P22)</span></p>
+              <p style="color:var(--green2);">✓ The array must be sorted</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Binary search works by comparing the target to the middle element and eliminating half the search space. This only works correctly when elements are in sorted order.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Write a C routine for binary search in an ascending-sorted array. <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q1a)</span></p>
+              <p style="color:var(--green2);">✓ See the Binary Search pseudocode and Python implementation above.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Big-O for average height of BST built from n random insertions? <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q1b)</span></p>
+              <p style="color:var(--green2);">✓ O(log n) average height</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:0;">Random insertions produce a roughly balanced BST with expected height ≈ 1.39 log₂ n. Worst case (sorted insertions): O(n) height (linked list).</p>
+            </div>
+
             <div class="quiz-block">
               <div class="quiz-title">Quick Quiz — Section 11</div>
               <div id="quiz-s11"></div>
@@ -3909,8 +5271,55 @@ arr = [<span class="nm">1</span>,<span class="nm">3</span>,<span class="nm">5</s
             </div>
             <div class="topic-block">
               <h3>Merge Sort — Divide & Conquer</h3>
-              <p>Divide array in half, recursively sort both halves, then merge them back together. Guaranteed O(n log
-                n).</p>
+              <p>Divide array in half, recursively sort both halves, then merge them back together. Guaranteed O(n log n).</p>
+              <div class="diagram">
+                <svg viewBox="0 0 560 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace" font-size="10">
+                  <text x="280" y="14" text-anchor="middle" fill="#9090a8" font-size="11" font-weight="700">Merge Sort — Divide phase (↓) then Merge phase (↑)</text>
+                  <!-- Level 0: full array -->
+                  <rect x="170" y="22" width="220" height="26" rx="4" fill="rgba(124,58,237,0.2)" stroke="#7c3aed" stroke-width="1.5"/>
+                  <text x="280" y="39" text-anchor="middle" fill="#c4b5fd">[38, 27, 43, 3]</text>
+                  <!-- Divide arrows down -->
+                  <line x1="230" y1="48" x2="180" y2="72" stroke="#5a5a70" stroke-width="1.5"/>
+                  <line x1="330" y1="48" x2="380" y2="72" stroke="#5a5a70" stroke-width="1.5"/>
+                  <!-- Level 1 -->
+                  <rect x="100" y="72" width="150" height="26" rx="4" fill="rgba(59,130,246,0.18)" stroke="#3b82f6" stroke-width="1.5"/>
+                  <text x="175" y="89" text-anchor="middle" fill="#93c5fd">[38, 27]</text>
+                  <rect x="310" y="72" width="150" height="26" rx="4" fill="rgba(59,130,246,0.18)" stroke="#3b82f6" stroke-width="1.5"/>
+                  <text x="385" y="89" text-anchor="middle" fill="#93c5fd">[43, 3]</text>
+                  <!-- Divide arrows down -->
+                  <line x1="150" y1="98" x2="120" y2="120" stroke="#5a5a70" stroke-width="1.5"/>
+                  <line x1="200" y1="98" x2="230" y2="120" stroke="#5a5a70" stroke-width="1.5"/>
+                  <line x1="360" y1="98" x2="330" y2="120" stroke="#5a5a70" stroke-width="1.5"/>
+                  <line x1="410" y1="98" x2="440" y2="120" stroke="#5a5a70" stroke-width="1.5"/>
+                  <!-- Level 2: singles -->
+                  <rect x="90" y="120" width="60" height="26" rx="4" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="120" y="137" text-anchor="middle" fill="#6ee7b7">[38]</text>
+                  <rect x="200" y="120" width="60" height="26" rx="4" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="230" y="137" text-anchor="middle" fill="#6ee7b7">[27]</text>
+                  <rect x="300" y="120" width="60" height="26" rx="4" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="330" y="137" text-anchor="middle" fill="#6ee7b7">[43]</text>
+                  <rect x="410" y="120" width="50" height="26" rx="4" fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="435" y="137" text-anchor="middle" fill="#6ee7b7">[3]</text>
+                  <!-- MERGE arrows up -->
+                  <line x1="130" y1="146" x2="165" y2="168" stroke="#f59e0b" stroke-width="1.5"/>
+                  <line x1="230" y1="146" x2="195" y2="168" stroke="#f59e0b" stroke-width="1.5"/>
+                  <line x1="330" y1="146" x2="365" y2="168" stroke="#f59e0b" stroke-width="1.5"/>
+                  <line x1="435" y1="146" x2="405" y2="168" stroke="#f59e0b" stroke-width="1.5"/>
+                  <!-- Merged level 1 -->
+                  <rect x="100" y="168" width="160" height="26" rx="4" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="1.5"/>
+                  <text x="180" y="185" text-anchor="middle" fill="#fcd34d">[27, 38]</text>
+                  <rect x="310" y="168" width="150" height="26" rx="4" fill="rgba(245,158,11,0.18)" stroke="#f59e0b" stroke-width="1.5"/>
+                  <text x="385" y="185" text-anchor="middle" fill="#fcd34d">[3, 43]</text>
+                  <!-- Final merge -->
+                  <line x1="200" y1="194" x2="250" y2="210" stroke="#f59e0b" stroke-width="1.5"/>
+                  <line x1="360" y1="194" x2="310" y2="210" stroke="#f59e0b" stroke-width="1.5"/>
+                  <rect x="160" y="205" width="240" height="12" rx="3" fill="rgba(245,158,11,0.25)" stroke="#f59e0b" stroke-width="1"/>
+                  <text x="280" y="215" text-anchor="middle" fill="#fcd34d" font-size="9">[3, 27, 38, 43] ← Sorted!</text>
+                  <!-- Labels -->
+                  <text x="10" y="90" fill="#5a5a70" font-size="9">DIVIDE</text>
+                  <text x="10" y="185" fill="#f59e0b" font-size="9">MERGE</text>
+                </svg>
+              </div>
               <div class="code-block">
                 <div class="code-header"><span class="code-lang">Python — Merge Sort</span><button class="code-copy"
                     onclick="copyCode(this)">copy</button></div>
@@ -3962,10 +5371,263 @@ arr = [<span class="nm">1</span>,<span class="nm">3</span>,<span class="nm">5</s
     <span class="kw">return</span> i + <span class="nm">1</span>  <span class="cm"># Pivot is now in final position</span></pre>
               </div>
             </div>
+            <div class="topic-block">
+              <h3>Insertion Sort — Routine &amp; Trace</h3>
+              <p>Builds the sorted array one element at a time by <strong>inserting</strong> each new element into its correct position among already-sorted elements. Best for small or nearly-sorted data. (Practice Questions doc — explicit requirement)</p>
+              <div class="tree-visual">
+  Array: [5, 3, 8, 1, 9]
+
+  Pass 1: key=3 → [3, 5, 8, 1, 9]
+  Pass 2: key=8 → [3, 5, 8, 1, 9] (no change)
+  Pass 3: key=1 → [1, 3, 5, 8, 9]
+  Pass 4: key=9 → [1, 3, 5, 8, 9] (no change)
+  Sorted! Time: O(n) best (sorted), O(n²) worst/avg</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — Insertion Sort</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">def</span> <span class="fn">insertion_sort</span>(arr):
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">1</span>, <span class="fn">len</span>(arr)):
+        key = arr[i]         <span class="cm"># Element to be inserted</span>
+        j = i - <span class="nm">1</span>
+        <span class="cm"># Shift larger elements one position right</span>
+        <span class="kw">while</span> j >= <span class="nm">0</span> <span class="kw">and</span> arr[j] > key:
+            arr[j + <span class="nm">1</span>] = arr[j]
+            j -= <span class="nm">1</span>
+        arr[j + <span class="nm">1</span>] = key    <span class="cm"># Insert key in correct position</span>
+    <span class="kw">return</span> arr
+<span class="cm"># Best: O(n) | Average: O(n²) | Worst: O(n²) | Space: O(1) | Stable: Yes</span></pre>
+              </div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Selection Sort</h3>
+              <p>Repeatedly finds the <strong>minimum element</strong> in the unsorted portion and swaps it to the front. Always O(n²) regardless of input order.</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — Selection Sort</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">def</span> <span class="fn">selection_sort</span>(arr):
+    n = <span class="fn">len</span>(arr)
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):
+        min_idx = i
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(i+<span class="nm">1</span>, n):
+            <span class="kw">if</span> arr[j] < arr[min_idx]:
+                min_idx = j    <span class="cm"># Track index of minimum</span>
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]  <span class="cm"># Swap to front</span>
+    <span class="kw">return</span> arr
+<span class="cm"># Best: O(n²) | Average: O(n²) | Worst: O(n²) | Space: O(1) | Stable: No</span></pre>
+              </div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Heap Sort — Routine &amp; Step-by-Step</h3>
+              <p><strong>Heap Sort</strong> uses a max-heap. Phase 1: build a max-heap from the array. Phase 2: repeatedly extract the maximum (swap root with last, reduce heap size, heapify). Result is sorted ascending. Always O(n log n). (Practice Questions doc + Practical Assignment Q2b)</p>
+              <div class="tree-visual">
+  Practical Assignment: Sort [25, 30, 7, 14, 23, 4, 5]
+
+  Phase 1 — Build Max-Heap:
+  Start: [25,30,7,14,23,4,5]
+  Heapify from index 2 down: [25,30,7,14,23,4,5]
+  After heapify all: [30,25,7,14,23,4,5]
+
+  Phase 2 — Extract max repeatedly:
+  Step 1: Swap 30↔5 → [5,25,7,14,23,4,30] → heapify → [25,23,7,14,5,4,30]
+  Step 2: Swap 25↔4 → [4,23,7,14,5,25,30] → heapify → [23,14,7,4,5,25,30]
+  Step 3: Swap 23↔5 → [5,14,7,4,23,25,30] → heapify → [14,5,7,4,23,25,30]
+  Step 4: Swap 14↔4 → [4,5,7,14,23,25,30] → heapify → [7,5,4,14,23,25,30]
+  Step 5: Swap 7↔4  → [4,5,7,14,23,25,30] → heapify → [5,4,7,14,23,25,30]
+  Step 6: Swap 5↔4  → [4,5,7,14,23,25,30]
+  Sorted: [4, 5, 7, 14, 23, 25, 30] ✓</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — Heap Sort</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">def</span> <span class="fn">heapify</span>(arr, n, i):
+    <span class="cm"># Make subtree rooted at i a max-heap</span>
+    largest = i
+    left, right = <span class="nm">2</span>*i+<span class="nm">1</span>, <span class="nm">2</span>*i+<span class="nm">2</span>
+    <span class="kw">if</span> left < n <span class="kw">and</span> arr[left] > arr[largest]: largest = left
+    <span class="kw">if</span> right < n <span class="kw">and</span> arr[right] > arr[largest]: largest = right
+    <span class="kw">if</span> largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        <span class="fn">heapify</span>(arr, n, largest)  <span class="cm"># Recursively fix subtree</span>
+
+<span class="kw">def</span> <span class="fn">heap_sort</span>(arr):
+    n = <span class="fn">len</span>(arr)
+    <span class="cm"># Phase 1: Build max-heap (bottom-up)</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n//<span class="nm">2</span>-<span class="nm">1</span>, -<span class="nm">1</span>, -<span class="nm">1</span>):
+        <span class="fn">heapify</span>(arr, n, i)
+    <span class="cm"># Phase 2: Extract max one by one</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n-<span class="nm">1</span>, <span class="nm">0</span>, -<span class="nm">1</span>):
+        arr[<span class="nm">0</span>], arr[i] = arr[i], arr[<span class="nm">0</span>]  <span class="cm"># Max to end</span>
+        <span class="fn">heapify</span>(arr, i, <span class="nm">0</span>)              <span class="cm"># Restore heap property</span>
+    <span class="kw">return</span> arr
+
+<span class="fn">print</span>(<span class="fn">heap_sort</span>([<span class="nm">25</span>,<span class="nm">30</span>,<span class="nm">7</span>,<span class="nm">14</span>,<span class="nm">23</span>,<span class="nm">4</span>,<span class="nm">5</span>]))  <span class="cm"># [4,5,7,14,23,25,30]</span>
+<span class="cm"># Best/Avg/Worst: O(n log n) | Space: O(1) | Stable: No</span></pre>
+              </div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Shell Sort</h3>
+              <p>An optimisation of Insertion Sort. Instead of comparing adjacent elements, Shell Sort compares elements <strong>gap positions apart</strong>, then progressively reduces the gap. This pre-sorts the array so that the final insertion sort pass does very little work. (Practical Assignment Q3)</p>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — Shell Sort</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">def</span> <span class="fn">shell_sort</span>(arr):
+    n = <span class="fn">len</span>(arr)
+    gap = n // <span class="nm">2</span>           <span class="cm"># Start with large gap, halve each round</span>
+    <span class="kw">while</span> gap > <span class="nm">0</span>:
+        <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(gap, n):
+            temp = arr[i]
+            j = i
+            <span class="kw">while</span> j >= gap <span class="kw">and</span> arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+        gap //= <span class="nm">2</span>           <span class="cm"># Reduce gap</span>
+    <span class="kw">return</span> arr
+<span class="cm"># Worst: O(n²) | Average: O(n log n) depending on gap sequence | Space: O(1)</span></pre>
+              </div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Sorting Algorithm Selection — Big-O Analysis Table</h3>
+              <p>From the <strong>Practice Questions doc</strong>: "Factors to consider when selecting a sorting algorithm." And <strong>Practical Assignment Q3</strong>: Big-O analysis for worst/avg/best for each algorithm.</p>
+              <div class="table-wrap">
+                <table>
+                  <tr>
+                    <th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th><th>Stable?</th><th>Best when</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Bubble Sort</strong></td>
+                    <td class="ok code">O(n)</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td>
+                    <td class="good code">O(1)</td><td style="color:var(--green2);">Yes</td>
+                    <td style="font-size:12px;">Teaching/tiny datasets only</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Selection Sort</strong></td>
+                    <td class="bad code">O(n²)</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td>
+                    <td class="good code">O(1)</td><td style="color:var(--red2);">No</td>
+                    <td style="font-size:12px;">Minimizing swaps needed</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Insertion Sort</strong></td>
+                    <td class="ok code">O(n)</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td>
+                    <td class="good code">O(1)</td><td style="color:var(--green2);">Yes</td>
+                    <td style="font-size:12px;">Nearly sorted / small n</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Shell Sort</strong></td>
+                    <td class="ok code">O(n log n)</td><td class="ok code">O(n log² n)</td><td class="bad code">O(n²)</td>
+                    <td class="good code">O(1)</td><td style="color:var(--red2);">No</td>
+                    <td style="font-size:12px;">Medium datasets, no extra memory</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Merge Sort</strong></td>
+                    <td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td>
+                    <td class="bad code">O(n)</td><td style="color:var(--green2);">Yes</td>
+                    <td style="font-size:12px;">Stability required; linked lists</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Quick Sort</strong></td>
+                    <td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td><td class="bad code">O(n²)</td>
+                    <td class="good code">O(log n)</td><td style="color:var(--red2);">No</td>
+                    <td style="font-size:12px;"><strong>General use, 1M+ elements</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Heap Sort</strong></td>
+                    <td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td>
+                    <td class="good code">O(1)</td><td style="color:var(--red2);">No</td>
+                    <td style="font-size:12px;">Guaranteed O(n log n), no extra memory</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout callout-exam"><strong>KEY SELECTION FACTORS:</strong> (1) <em>Stability needed?</em> → Merge Sort. (2) <em>Nearly sorted?</em> → Insertion Sort. (3) <em>Memory limited?</em> → Heap/Quick Sort (O(1) space). (4) <em>&gt;1 million elements?</em> → Quick Sort (average performance wins). (5) <em>Guaranteed O(n log n)?</em> → Merge Sort or Heap Sort. From test: "Best sort for 1M+ = Quick Sort" — student who chose Merge Sort was wrong.</div>
+            </div>
+
+            <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+              <h3>📝 Past Exam &amp; Assignment Questions — Section 12</h3>
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Best sorting algorithm for more than 1 million elements in general? <span style="font-size:11px;color:var(--text3);">(Test P14)</span></p>
+              <p style="color:var(--red2);">✗ Common wrong answer: Merge Sort</p>
+              <p style="color:var(--green2);">✓ Correct: Quick Sort</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Both run O(n log n) on average, but Quick Sort has better cache locality and lower constant factors. Merge Sort uses O(n) extra memory. For large practical datasets, Quick Sort typically outperforms. Merge Sort has better worst-case guarantee but Quick Sort wins in practice.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: After first QuickSort partition, array is: 3 0 2 5 1 7 9 12 11 100 10. Which is correct? <span style="font-size:11px;color:var(--text3);">(Test P18)</span></p>
+              <p style="color:var(--red2);">✗ Wrong: "The pivot could be the 7 but it is NOT the 9"</p>
+              <p style="color:var(--green2);">✓ Correct: "The pivot could be EITHER the 7 OR the 9"</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Check 7: all elements left (3,0,2,5,1) are &lt; 7; all elements right (9,12,11,100,10) are &gt; 7 ✓. Check 9: all elements left (3,0,2,5,1,7) are &lt; 9; all elements right (12,11,100,10) are &gt; 9 ✓. Both are in their final sorted positions — so either could have been the pivot.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which sorting algorithms are Divide &amp; Conquer? <span style="font-size:11px;color:var(--text3);">(Test P11)</span></p>
+              <p style="color:var(--green2);">✓ Merge Sort and Quick Sort</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Bubble, Selection, Insertion, Shell, Heap Sort are NOT divide &amp; conquer. Merge Sort: split in half, sort each, merge. Quick Sort: partition around pivot, sort each partition recursively.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which sorting algorithm has lowest worst-case complexity? <span style="font-size:11px;color:var(--text3);">(Test P24)</span></p>
+              <p style="color:var(--green2);">✓ Merge Sort — always O(n log n) worst case</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Quick Sort degrades to O(n²) on already-sorted input with bad pivot. Heap Sort is also O(n log n) worst case. Merge Sort is the "safe choice" for guaranteed O(n log n).</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Perform Big-O analysis (best/avg/worst) for: Insertion, Bubble, Selection, Merge, Shell Sort. <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q3)</span></p>
+              <div class="table-wrap" style="margin-top:8px;">
+                <table>
+                  <tr><th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th></tr>
+                  <tr><td>Insertion Sort</td><td class="ok code">O(n)</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td><td class="good code">O(1)</td></tr>
+                  <tr><td>Bubble Sort</td><td class="ok code">O(n)</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td><td class="good code">O(1)</td></tr>
+                  <tr><td>Selection Sort</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td><td class="bad code">O(n²)</td><td class="good code">O(1)</td></tr>
+                  <tr><td>Merge Sort</td><td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td><td class="ok code">O(n log n)</td><td class="bad code">O(n)</td></tr>
+                  <tr><td>Shell Sort</td><td class="ok code">O(n log n)</td><td class="ok code">O(n log² n)</td><td class="bad code">O(n²)</td><td class="good code">O(1)</td></tr>
+                </table>
+              </div>
+              <p style="color:var(--text2);font-size:13px;margin-top:8px;margin-bottom:14px;">Insertion Sort best case O(n): when array is nearly sorted, only shifting is needed. Bubble Sort best case O(n): "swapped" flag short-circuits after one pass on sorted data. Selection Sort: always O(n²) — no early-exit optimisation possible. Shell Sort depends on gap sequence; O(n^1.5) with Hibbard gaps.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Write a routine to sort [25,30,7,14,23,4,5] using Heap Sort. <span style="font-size:11px;color:var(--text3);">(Practical Assignment Q2b)</span></p>
+              <p style="color:var(--green2);">✓ See Heap Sort implementation above. Final sorted array: [4, 5, 7, 14, 23, 25, 30]</p>
+            </div>
+
             <div class="quiz-block">
               <div class="quiz-title">Quick Quiz — Section 12</div>
               <div id="quiz-s12"></div>
             </div>
+
+            <div class="toggle-section">
+              <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Sorting Algorithms</button>
+              <div class="toggle-content">
+                <h4>Stable vs Unstable Sorting</h4>
+                <p>A sort is <strong>stable</strong> if equal elements maintain their original relative order after sorting.</p>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Algorithm</th><th>Stable?</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th></tr>
+                    <tr><td>Merge Sort</td><td class="good">✓ Stable</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td></tr>
+                    <tr><td>Insertion Sort</td><td class="good">✓ Stable</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+                    <tr><td>Bubble Sort</td><td class="good">✓ Stable</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+                    <tr><td>Quick Sort</td><td class="bad">✗ Unstable</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)</td></tr>
+                    <tr><td>Heap Sort</td><td class="bad">✗ Unstable</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(1)</td></tr>
+                    <tr><td>Selection Sort</td><td class="bad">✗ Unstable</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+                    <tr><td>Shell Sort</td><td class="bad">✗ Unstable</td><td>O(n log n)</td><td>O(n log² n)</td><td>O(n²)</td><td>O(1)</td></tr>
+                    <tr><td>Counting Sort</td><td class="good">✓ Stable</td><td>O(n+k)</td><td>O(n+k)</td><td>O(n+k)</td><td>O(k)</td></tr>
+                    <tr><td>Radix Sort</td><td class="good">✓ Stable</td><td>O(nk)</td><td>O(nk)</td><td>O(nk)</td><td>O(n+k)</td></tr>
+                  </table>
+                </div>
+                <h4>When stability matters:</h4>
+                <p>Sorting a database by LAST_NAME then by FIRST_NAME: if you sort by LAST_NAME first using a stable sort, then sort by FIRST_NAME, people with the same first name will still be sorted by last name. Unstable sort loses this secondary ordering.</p>
+                <h4>Timsort — Python's Built-in Sort</h4>
+                <p>Python's <code>sort()</code> and <code>sorted()</code> use <strong>Timsort</strong> — a hybrid of Merge Sort and Insertion Sort. Key features:</p>
+                <ul>
+                  <li>Detects natural "runs" (already-sorted sequences) in the input</li>
+                  <li>Uses Insertion Sort for small runs (≤ 64 elements)</li>
+                  <li>Merges runs using Merge Sort logic</li>
+                  <li>Time: O(n log n) worst case, O(n) for nearly-sorted input</li>
+                  <li>Space: O(n) — stable sort</li>
+                  <li>Used in: Python, Java (Arrays.sort for objects), Android</li>
+                </ul>
+                <h4>Non-Comparison Sorts (Linear Time)</h4>
+                <ul>
+                  <li><strong>Counting Sort:</strong> Count occurrences of each value. O(n+k) where k = value range. Only for integers in known range.</li>
+                  <li><strong>Radix Sort:</strong> Sort digit by digit (LSD or MSD). O(nk) where k = number of digits. Uses stable sort per digit pass. Great for integers and fixed-length strings.</li>
+                  <li><strong>Bucket Sort:</strong> Distribute elements into buckets based on range, sort each bucket, concatenate. O(n) average for uniformly distributed data. O(n²) worst case.</li>
+                </ul>
+                <p>These break the Ω(n log n) lower bound for comparison-based sorting by using extra information about the input.</p>
+                <p><strong>Further Reading:</strong>
+                  <a href="https://www.geeksforgeeks.org/stability-in-sorting-algorithms/" target="_blank" rel="noopener">GFG: Stability in Sorting</a> |
+                  <a href="https://www.geeksforgeeks.org/timsort/" target="_blank" rel="noopener">GFG: TimSort</a> |
+                  <a href="https://www.geeksforgeeks.org/radix-sort/" target="_blank" rel="noopener">GFG: Radix Sort</a>
+                </p>
+              </div>
+            </div>
+
             <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s12')">✓ Mark Section 12
                 Complete</button></div>
             <div class="section-nav">
@@ -4133,10 +5795,192 @@ values  = [<span class="nm">70</span>, <span class="nm">80</span>, <span class="
     <span class="kw">return</span> dp[n]</pre>
               </div>
             </div>
+            <div class="topic-block">
+              <h3>Backtracking Strategy — N-Queens Example</h3>
+              <p><strong>Backtracking</strong> builds a solution incrementally. When a partial solution violates constraints, it <em>backtracks</em> — undoes the last step and tries another path. It is essentially a depth-first search over a solution space tree, pruning branches that cannot lead to a valid solution. (Theory Assignment Q3iii)</p>
+              <h4>4-Queens Problem Walkthrough</h4>
+              <p>Place 4 queens on a 4×4 board so no two attack each other (not same row, column, or diagonal).</p>
+              <div class="tree-visual">
+  Col:    1   2   3   4
+  Row 1:  Q   .   .   .   ← Place queen at (1,1)
+  Row 2:  .   .   Q   .   ← (1,2) and (1,3) attacked; try (2,3)
+  Row 3:  .   .   .   .   ← All cols attacked from (1,1)+(2,3) → BACKTRACK
+  Row 2:  .   .   .   Q   ← Try (2,4)
+  Row 3:  .   Q   .   .   ← (3,2) works!
+  Row 4:  .   .   Q   .   ← (4,3) works! → Solution found: (1,1)(2,4)(3,2)(4,3)</div>
+              <div class="code-block">
+                <div class="code-header"><span class="code-lang">Python — N-Queens Backtracking</span><button class="code-copy" onclick="copyCode(this)">copy</button></div>
+                <pre><span class="kw">def</span> <span class="fn">solve_nqueens</span>(n):
+    solutions = []
+    board = [-<span class="nm">1</span>] * n  <span class="cm"># board[row] = col of queen in that row</span>
+
+    <span class="kw">def</span> <span class="fn">is_safe</span>(row, col):
+        <span class="kw">for</span> r <span class="kw">in</span> <span class="fn">range</span>(row):
+            <span class="kw">if</span> board[r] == col: <span class="kw">return</span> <span class="nm">False</span>          <span class="cm"># Same column</span>
+            <span class="kw">if</span> <span class="fn">abs</span>(board[r] - col) == <span class="fn">abs</span>(r - row): <span class="kw">return</span> <span class="nm">False</span>  <span class="cm"># Diagonal</span>
+        <span class="kw">return</span> <span class="nm">True</span>
+
+    <span class="kw">def</span> <span class="fn">backtrack</span>(row):
+        <span class="kw">if</span> row == n:          <span class="cm"># All queens placed</span>
+            solutions.append(board[:])
+            <span class="kw">return</span>
+        <span class="kw">for</span> col <span class="kw">in</span> <span class="fn">range</span>(n):
+            <span class="kw">if</span> <span class="fn">is_safe</span>(row, col):
+                board[row] = col   <span class="cm"># Place queen</span>
+                <span class="fn">backtrack</span>(row + <span class="nm">1</span>)
+                board[row] = -<span class="nm">1</span>  <span class="cm"># BACKTRACK — remove queen</span>
+
+    <span class="fn">backtrack</span>(<span class="nm">0</span>)
+    <span class="kw">return</span> solutions
+
+<span class="fn">print</span>(<span class="fn">solve_nqueens</span>(<span class="nm">4</span>))  <span class="cm"># Returns 2 solutions for 4-queens</span></pre>
+              </div>
+              <div class="callout callout-exam"><strong>EXAM:</strong> Backtracking = depth-first exploration + pruning of invalid paths. Classic problems: N-Queens, Sudoku, maze solving, subset sum.</div>
+            </div>
+
+            <div class="topic-block">
+              <h3>Branch and Bound Strategy</h3>
+              <p><strong>Branch and Bound</strong> is an improved form of backtracking used for <em>optimisation problems</em>. At each node in the search tree, it computes an <strong>upper bound</strong> (for maximisation) or <strong>lower bound</strong> (for minimisation) on the best achievable solution from that branch. If the bound is worse than the best known solution, the branch is <strong>pruned</strong> (bounded) — never explored.</p>
+              <div class="compare-grid">
+                <div class="compare-card">
+                  <h4 style="color:var(--amber2);">Backtracking</h4>
+                  <ul>
+                    <li>Prunes infeasible branches (violates constraints)</li>
+                    <li>Used for constraint satisfaction</li>
+                    <li>No optimality bounds</li>
+                    <li>Example: N-Queens, Sudoku</li>
+                  </ul>
+                </div>
+                <div class="compare-card">
+                  <h4 style="color:var(--blue2);">Branch and Bound</h4>
+                  <ul>
+                    <li>Prunes suboptimal branches (worse than best known)</li>
+                    <li>Used for optimisation problems</li>
+                    <li>Uses bounding function (upper/lower)</li>
+                    <li>Example: 0/1 Knapsack, TSP</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="topic-block">
+              <h3>0/1 Knapsack — DP Table Visualisation</h3>
+              <p>Items: (v=70,w=20), (v=80,w=30), (v=90,w=40), (v=200,w=70). Capacity=60. Each cell dp[i][w] = max value using first <em>i</em> items with capacity <em>w</em>.</p>
+              <div class="table-wrap">
+                <table>
+                  <tr>
+                    <th>Item (v,w) \ Cap</th><th>0</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th>
+                  </tr>
+                  <tr>
+                    <td><strong>0 (none)</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>1 (70,20)</strong></td><td>0</td><td>0</td><td style="color:var(--green2);font-weight:700;">70</td><td style="color:var(--green2);font-weight:700;">70</td><td style="color:var(--green2);font-weight:700;">70</td><td style="color:var(--green2);font-weight:700;">70</td><td style="color:var(--green2);font-weight:700;">70</td>
+                  </tr>
+                  <tr>
+                    <td><strong>2 (80,30)</strong></td><td>0</td><td>0</td><td>70</td><td style="color:var(--amber2);font-weight:700;">80</td><td>80</td><td style="color:var(--amber2);font-weight:700;">150</td><td style="color:var(--amber2);font-weight:700;">150</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3 (90,40)</strong></td><td>0</td><td>0</td><td>70</td><td>80</td><td style="color:var(--blue2);font-weight:700;">90</td><td>150</td><td style="color:var(--blue2);font-weight:700;">160</td>
+                  </tr>
+                  <tr>
+                    <td><strong>4 (200,70)</strong></td><td>0</td><td>0</td><td>70</td><td>80</td><td>90</td><td>150</td><td style="color:var(--accent2);font-weight:700;background:rgba(124,58,237,0.1);">160 ✓</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="callout callout-exam"><strong>RESULT:</strong> dp[4][60] = <strong>160</strong>. This comes from taking item 1 (v=70,w=20) + item 3 (v=90,w=40) = 160 total value at exactly weight 60. Student in test selected 170 — that requires weight 30+40=70 &gt; capacity. Common error!</div>
+            </div>
+
+            <div class="topic-block" style="border-left:3px solid var(--amber);padding-left:16px;">
+              <h3>📝 Past Exam &amp; Assignment Questions — Section 13</h3>
+              <div class="callout callout-info" style="margin-bottom:16px;">These are actual questions from your test paper and assignments with correct answers and full explanations.</div>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Which methods can be used to solve the Knapsack problem? <span style="font-size:11px;color:var(--text3);">(Test P11)</span></p>
+              <p style="color:var(--green2);">✓ Brute force, Recursion, Dynamic Programming</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">All three methods can solve Knapsack. DP is optimal (O(nW)). Brute force (O(2ⁿ)) checks all subsets. Recursion without memoisation is equivalent to brute force. Greedy ONLY works for the Fractional variant.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Items {value=40,weight=20}, {30,10}, {20,5}. Capacity=20. Max value (fractional knapsack)? <span style="font-size:11px;color:var(--text3);">(Test P13)</span></p>
+              <p style="color:var(--red2);">✗ Common wrong answer: 80</p>
+              <p style="color:var(--green2);">✓ Correct answer: 60</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Sort by ratio: (20/5=4)→(30/10=3)→(40/20=2). Take item3 fully (val=20,cap=15). Take item2 fully (val=30,cap=5). Take 5/20 of item1 (val=10). Total=60. Error: taking item1 first (ratio 2) then item3 (ratio 4) gives only 40+20=60 either way — the order matters for fractional. The wrong answer 80 comes from taking item1 fully (40) and item3 fully (20) = 60 total weight 25 &gt; 20. Overcapacity!</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Items {60,20},{50,25},{20,5}. Capacity=40. Max value (fractional)? <span style="font-size:11px;color:var(--text3);">(Test P15)</span></p>
+              <p style="color:var(--green2);">✓ 110</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Ratios: 20/5=4, 60/20=3, 50/25=2. Take (20,5)→val=20,cap=35. Take (60,20)→val=60,cap=15. Take 15/25 of (50,25)→val=30. Total=20+60+30=110.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: 0-1 Knapsack can be solved using Greedy algorithm? <span style="font-size:11px;color:var(--text3);">(Test P15)</span></p>
+              <p style="color:var(--green2);">✓ FALSE — 0-1 Knapsack CANNOT use Greedy. Must use Dynamic Programming.</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;">Greedy fails for 0/1 because you must take whole items. The greedy "take best ratio first" doesn't guarantee global optimum when items can't be split.</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: 0/1 Knapsack. Capacity=60, weights={20,30,40,70}, values={70,80,90,200}. Max value? <span style="font-size:11px;color:var(--text3);">(Test P16)</span></p>
+              <p style="color:var(--red2);">✗ Common wrong answer: 170 (student added 80+90=170, weights=30+40=70 &gt; 60 ✗)</p>
+              <p style="color:var(--green2);">✓ Correct: 160 (take items w=20,v=70 + w=40,v=90 = total weight 60, total value 160)</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Fractional Knapsack is most efficiently solved by: <span style="font-size:11px;color:var(--text3);">(Test P20)</span></p>
+              <p style="color:var(--green2);">✓ Greedy algorithm (sort by value/weight ratio, take greedily)</p>
+
+              <p style="font-weight:700;color:var(--amber2);margin-bottom:6px;">Q: Describe Greedy, Divide &amp; Conquer, and Backtracking strategies with examples. <span style="font-size:11px;color:var(--text3);">(Theory Assignment Q3)</span></p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:6px;"><strong style="color:var(--green2);">Greedy:</strong> Makes the locally best choice at each step without revisiting. Works when local optimum leads to global optimum. Example: Fractional Knapsack (sort by ratio, take best), Dijkstra (pick min dist vertex), Kruskal (pick min edge).</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:6px;"><strong style="color:var(--blue2);">Divide &amp; Conquer:</strong> Break problem into smaller subproblems, solve recursively, combine results. Subproblems are independent (no overlap). Example: Merge Sort (split, sort each half, merge), Quick Sort (partition around pivot).</p>
+              <p style="color:var(--text2);font-size:13px;margin-bottom:14px;"><strong style="color:var(--amber2);">Backtracking:</strong> Build solution incrementally; abandon partial solution (backtrack) when it violates constraints. Explores solution space using DFS with pruning. Example: N-Queens (place queens row by row, backtrack on conflict), Sudoku solver.</p>
+            </div>
+
             <div class="quiz-block">
               <div class="quiz-title">Quick Quiz — Final Section</div>
               <div id="quiz-s13"></div>
             </div>
+
+            <div class="toggle-section">
+              <button class="toggle-btn" onclick="this.parentElement.classList.toggle('open')">📚 Deep Dive — Algorithm Design Strategies</button>
+              <div class="toggle-content">
+                <h4>Memoization vs Tabulation (Top-Down vs Bottom-Up DP)</h4>
+                <p>Both approaches solve overlapping subproblems but differ in implementation style:</p>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Property</th><th>Memoization (Top-Down)</th><th>Tabulation (Bottom-Up)</th></tr>
+                    <tr><td>Direction</td><td>Starts from original problem, recurses</td><td>Starts from base cases, builds up</td></tr>
+                    <tr><td>Implementation</td><td>Recursive + cache (dict/array)</td><td>Iterative + DP table</td></tr>
+                    <tr><td>Space</td><td>Only computed subproblems cached</td><td>Entire table allocated</td></tr>
+                    <tr><td>Stack overflow risk</td><td>Yes (deep recursion)</td><td>No</td></tr>
+                    <tr><td>Code clarity</td><td>Often more intuitive</td><td>Often faster in practice</td></tr>
+                    <tr><td>Example</td><td>fibonacci(n) with @lru_cache</td><td>dp[i] = dp[i-1] + dp[i-2] loop</td></tr>
+                  </table>
+                </div>
+                <h4>Master Theorem — All Three Cases</h4>
+                <p>For recurrences of the form T(n) = aT(n/b) + f(n) where a ≥ 1, b &gt; 1:</p>
+                <div class="table-wrap">
+                  <table>
+                    <tr><th>Case</th><th>Condition</th><th>Result</th><th>Example</th></tr>
+                    <tr><td>Case 1</td><td>f(n) = O(n^(log_b a − ε))</td><td>T(n) = Θ(n^log_b a)</td><td>T(n)=8T(n/2)+n² → Θ(n³)</td></tr>
+                    <tr><td>Case 2</td><td>f(n) = Θ(n^log_b a)</td><td>T(n) = Θ(n^log_b a · log n)</td><td>Merge Sort T(n)=2T(n/2)+n → Θ(n log n)</td></tr>
+                    <tr><td>Case 3</td><td>f(n) = Ω(n^(log_b a + ε))</td><td>T(n) = Θ(f(n))</td><td>T(n)=T(n/2)+n → Θ(n)</td></tr>
+                  </table>
+                </div>
+                <p><strong>Merge Sort case:</strong> a=2, b=2, f(n)=n. log_b(a) = log₂(2) = 1. f(n) = n = Θ(n¹) = Θ(n^log_b a) → Case 2 → T(n) = Θ(n log n). ✓</p>
+                <h4>Branch and Bound</h4>
+                <p>An exact algorithm paradigm for optimization problems. Like backtracking but uses a bounding function to prune branches that cannot lead to better solutions than the current best.</p>
+                <ul>
+                  <li><strong>State space tree:</strong> Each node represents a partial solution. Branch = expand node. Bound = estimate best possible value from this partial solution.</li>
+                  <li><strong>Pruning:</strong> If bound ≤ current best → prune (discard) the subtree.</li>
+                  <li><strong>Best-First B&amp;B:</strong> Expand the most promising node first (using priority queue sorted by bound).</li>
+                  <li><strong>Applications:</strong> 0/1 Knapsack (exact), Travelling Salesman Problem, Job scheduling.</li>
+                  <li><strong>vs Backtracking:</strong> Backtracking checks feasibility (valid/invalid). B&amp;B checks optimality (better/worse than current best). B&amp;B is more powerful but needs a good bound function.</li>
+                </ul>
+                <h4>Greedy vs DP Decision Guide</h4>
+                <ul>
+                  <li>Use <strong>Greedy</strong> when: locally optimal choice leads to globally optimal solution (provable). Fractional Knapsack, Huffman Coding, Dijkstra, Kruskal, Prim.</li>
+                  <li>Use <strong>DP</strong> when: problem has overlapping subproblems AND optimal substructure, but greedy fails. 0/1 Knapsack, Longest Common Subsequence, Matrix Chain Multiplication.</li>
+                  <li>Use <strong>Backtracking</strong> when: need ALL solutions or a feasible solution in a constrained space. N-Queens, Sudoku, Hamiltonian Path.</li>
+                  <li>Use <strong>Branch &amp; Bound</strong> when: need the OPTIMAL solution in a constrained space more efficiently than exhaustive backtracking. TSP, 0/1 Knapsack (exact optimal).</li>
+                </ul>
+                <p><strong>Further Reading:</strong>
+                  <a href="https://www.geeksforgeeks.org/tabulation-vs-memoization/" target="_blank" rel="noopener">GFG: Tabulation vs Memoization</a> |
+                  <a href="https://www.geeksforgeeks.org/advanced-master-theorem-for-divide-and-conquer-recurrences/" target="_blank" rel="noopener">GFG: Master Theorem</a> |
+                  <a href="https://www.geeksforgeeks.org/branch-and-bound-algorithm/" target="_blank" rel="noopener">GFG: Branch and Bound</a>
+                </p>
+              </div>
+            </div>
+
             <div class="mark-done-wrap"><button class="mark-done-btn" onclick="markDone('s13')">✓ Mark Section 13
                 Complete — YOU'RE DONE! 🎉</button></div>
             <div class="section-nav">
@@ -4225,14 +6069,16 @@ values  = [<span class="nm">70</span>, <span class="nm">80</span>, <span class="
         { q: "Which of these is NOT a characteristic of a good algorithm?", options: ["Input", "Output", "Definiteness", "Color"], answer: 3, exp: "The 5 characteristics are: Input, Output, Definiteness, Finiteness, Effectiveness. Color is not one of them." },
         { q: "What is the key difference between an algorithm and a program?", options: ["An algorithm must be in Python", "An algorithm is language-independent; a program is a specific implementation", "A program has no loops", "An algorithm cannot use recursion"], answer: 1, exp: "An algorithm is abstract and language-independent. A program is its concrete implementation in a specific language." },
         { q: "Which ADT uses LIFO order?", options: ["Queue", "List", "Stack", "Priority Queue"], answer: 2, exp: "Stack = LIFO (Last In, First Out). Queue = FIFO (First In, First Out). This is a fundamental ADT property." },
-        { q: "Information hiding in ADTs means:", options: ["Data is encrypted", "The implementation details are hidden from the user", "The data cannot be modified", "Only one user can access data at a time"], answer: 1, exp: "Information hiding = encapsulation: the user sees only the interface (what operations do), not how they are implemented internally." }
+        { q: "Information hiding in ADTs means:", options: ["Data is encrypted", "The implementation details are hidden from the user", "The data cannot be modified", "Only one user can access data at a time"], answer: 1, exp: "Information hiding = encapsulation: the user sees only the interface (what operations do), not how they are implemented internally." },
+        { q: "A solution to a problem is said to be efficient if:", options: ["It runs in O(1) time", "It uses the minimum possible memory", "It is solved within required time and resource constraints", "It uses a divide and conquer approach"], answer: 2, exp: "From test P23: efficiency means meeting the required time AND resource constraints for the specific problem. An O(n²) solution may be efficient for n=100 but inefficient for n=10,000,000." }
       ],
       's2': [
         { q: "Big-O notation expresses:", options: ["Average case complexity", "Lower bounds", "Best case", "Upper bounds (worst case)"], answer: 3, exp: "Big-O = upper bounds (worst case). Big-Omega = lower bounds (best case). Big-Theta = tight bounds (average)." },
         { q: "Replacing a value at the kth position of an array A[k] is:", options: ["O(log n)", "O(n)", "O(1)", "O(n²)"], answer: 2, exp: "Array index access is always O(1) — it goes directly to the memory address without scanning." },
         { q: "What is the correct order from fastest to slowest?", options: ["O(n) < O(log n) < O(1)", "O(1) < O(log n) < O(n) < O(n²)", "O(n²) < O(n) < O(log n)", "O(n log n) < O(n)"], answer: 1, exp: "O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2^n) — memorize this order!" },
         { q: "Simplify: O(5n² + 3n + 100) =", options: ["O(5n²)", "O(n² + n)", "O(n²)", "O(100)"], answer: 2, exp: "Drop constant multipliers and lower-order terms. Only the dominant term survives: O(n²)." },
-        { q: "Merge Sort's recurrence T(n) = 2T(n/2) + O(n) solves to:", options: ["O(n)", "O(n²)", "O(n log n)", "O(log n)"], answer: 2, exp: "By the Master Theorem: a=2, b=2, f(n)=O(n). Since f(n)=O(n^log_2(2))=O(n), case 2 applies: T(n)=O(n log n)." }
+        { q: "Merge Sort's recurrence T(n) = 2T(n/2) + O(n) solves to:", options: ["O(n)", "O(n²)", "O(n log n)", "O(log n)"], answer: 2, exp: "By the Master Theorem: a=2, b=2, f(n)=O(n). Since f(n)=O(n^log_2(2))=O(n), case 2 applies: T(n)=O(n log n)." },
+        { q: "What is the WORST-case Big-O for BST insertion into an initially empty BST?", options: ["O(1)", "O(log n)", "O(n log n)", "O(n)"], answer: 3, exp: "Worst case: inserting already-sorted values (1,2,3,...n) creates a right-skewed chain of height n. Each insertion must traverse all previous nodes → O(n). This is why balanced BSTs (AVL, Red-Black) exist." }
       ],
       's3': [
         { q: "What makes array access O(1)?", options: ["Arrays use caching", "Address is calculated as: base + index × size", "Arrays are sorted", "Arrays use binary search internally"], answer: 1, exp: "address(arr[k]) = base_address + k × element_size. This is a direct computation — no searching needed." },
@@ -4245,7 +6091,8 @@ values  = [<span class="nm">70</span>, <span class="nm">80</span>, <span class="
         { q: "In its most basic form, what does a node in a Linked List consist of?", options: ["Pointer to head and tail", "An adjacency matrix", "Data and Information (vague)", "One area for data and one area with a pointer to the next node"], answer: 3, exp: "A linked list node = data field + pointer to next node. This was a direct question in your past test." },
         { q: "How is a circular linked list created?", options: ["By rotating head and tail", "By pointing to the head node from the tail node's next pointer", "By flipping nodes", "By inserting a special element"], answer: 1, exp: "In a circular linked list, the tail's next pointer points BACK to the head, creating a circle with no NULL." },
         { q: "What is the time complexity of inserting at the head of a singly linked list?", options: ["O(n)", "O(log n)", "O(1)", "O(n²)"], answer: 2, exp: "Inserting at the head: create new node, point its next to old head, update head pointer. Always 3 operations = O(1)." },
-        { q: "Compared to arrays, linked lists are better for:", options: ["Random access by index", "Cache performance", "Frequent insertions/deletions at unknown positions", "Sorting algorithms"], answer: 2, exp: "Linked lists excel at insertions/deletions anywhere (O(1) if you have a pointer to the location). Arrays require O(n) shifts." }
+        { q: "Compared to arrays, linked lists are better for:", options: ["Random access by index", "Cache performance", "Frequent insertions/deletions at unknown positions", "Sorting algorithms"], answer: 2, exp: "Linked lists excel at insertions/deletions anywhere (O(1) if you have a pointer to the location). Arrays require O(n) shifts." },
+        { q: "Which real-world application is best suited to a circular linked list?", options: ["Browser history (Back button)", "Undo/Redo in text editor", "Round-robin CPU scheduling", "Binary search on sorted data"], answer: 2, exp: "Circular linked list: processes cycle through continuously — perfect for round-robin scheduling. Browser history and undo/redo need backward traversal → doubly linked list. Binary search needs indexed random access → arrays." }
       ],
       's5': [
         { q: "A Stack follows which order?", options: ["FIFO — First In, First Out", "LIFO — Last In, First Out", "LILO — Last In, Last Out", "FILO — depends on implementation"], answer: 1, exp: "Stack = LIFO. The last item pushed is the first to be popped. Like a stack of plates — you always take from the top." },
@@ -4259,35 +6106,42 @@ values  = [<span class="nm">70</span>, <span class="nm">80</span>, <span class="
         { q: "In Prefix notation 'A + B' becomes:", options: ["A B +", "A + B", "+ A B", "B + A"], answer: 2, exp: "Prefix: operator comes BEFORE its operands. 'A + B' → '+ A B'. Also called Polish Notation." },
         { q: "Why do computers prefer Postfix (RPN) over Infix?", options: ["Postfix uses less memory always", "Postfix needs no parentheses or precedence rules to evaluate", "Postfix is more readable for humans", "Postfix only works with integers"], answer: 1, exp: "Postfix can be evaluated with a simple stack — no parentheses or operator precedence handling needed. This makes it ideal for compilers." },
         { q: "Convert '3 4 + 2 *' (Postfix) to Infix:", options: ["3 + 4 * 2", "(3 + 4) * 2", "3 * (4 + 2)", "3 + (4 * 2)"], answer: 1, exp: "Evaluate: push 3, push 4, see '+' → pop 4 and 3 → (3+4)=7, push 7. Push 2, see '*' → pop 2 and 7 → 7*2=14. Infix: (3+4)*2." },
-        { q: "During Infix to Postfix conversion, operators are stored in:", options: ["An output queue", "A stack", "An array sorted by precedence", "A BST"], answer: 1, exp: "The Shunting-Yard algorithm uses a STACK to hold operators. Operators are pushed/popped based on precedence rules." }
+        { q: "During Infix to Postfix conversion, operators are stored in:", options: ["An output queue", "A stack", "An array sorted by precedence", "A BST"], answer: 1, exp: "The Shunting-Yard algorithm uses a STACK to hold operators. Operators are pushed/popped based on precedence rules." },
+        { q: "The prefix form of (a + (b - c)) * ((d - e) / (f + g - h)) is:", options: ["+ a * - b c / - d e - + f g h", "* + a - b c / - d e - + f g h", "* a + b - c / d - e + f g - h", "a b c - + d e - f g + h - / *"], answer: 1, exp: "Convert inside-out: (b-c)=-bc, (a+(b-c))=+a-bc. (d-e)=-de, (f+g)=+fg, ((f+g)-h)=-+fgh, ((d-e)/(f+g-h))=/-de-+fgh. Full expression: * +a-bc /-de-+fgh. This was on Test P9!" }
       ],
       's7': [
         { q: "A Queue follows which order?", options: ["LIFO", "FIFO — First In, First Out", "Random order", "Sorted order"], answer: 1, exp: "Queue = FIFO. First element added is the first to be removed. Like a real queue/line at a store." },
         { q: "What is the load factor of a hash table?", options: ["The maximum number of elements", "n/m where n=stored items, m=table size", "The hash function value", "The number of collisions"], answer: 1, exp: "Load factor λ = n/m. When λ approaches 1 (for open addressing), performance degrades. Rehashing occurs at ~0.75." },
         { q: "In quadratic probing, after a collision at index h, the next probe is at:", options: ["h+1", "h+2", "(h+1²) % m", "(h+i²) % m where i is probe number"], answer: 3, exp: "Quadratic probing: probe sequence is (h + 1²) % m, (h + 2²) % m, (h + 3²) % m... It jumps over slots to reduce clustering." },
         { q: "Which collision resolution method allows λ > 1?", options: ["Linear Probing", "Quadratic Probing", "Separate Chaining", "Double Hashing"], answer: 2, exp: "Separate Chaining uses linked lists per bucket, so you can have more items than slots (λ > 1). Open addressing methods cannot." },
-        { q: "BFS (Breadth-First Search) uses which data structure?", options: ["Stack", "Priority Queue", "Queue", "Array"], answer: 2, exp: "BFS uses a Queue (FIFO). DFS uses a Stack. 'BFS=Queue, DFS=Stack' is a key exam fact." }
+        { q: "BFS (Breadth-First Search) uses which data structure?", options: ["Stack", "Priority Queue", "Queue", "Array"], answer: 2, exp: "BFS uses a Queue (FIFO). DFS uses a Stack. 'BFS=Queue, DFS=Stack' is a key exam fact." },
+        { q: "In a Max-Heap, which element is always found at the root?", options: ["The minimum element", "The median element", "The last inserted element", "The maximum element"], answer: 3, exp: "Max-Heap invariant: every parent >= its children at every level. Therefore the root always holds the MAXIMUM element. Min-Heap: root holds the minimum. This was on Test P13!" }
       ],
       's8': [
         { q: "What makes a tree 'binary'?", options: ["It has two root nodes", "Each node can have at most two child nodes", "Each edge is bidirectional", "Each leaf node has two parent nodes"], answer: 1, exp: "Binary means at most 2 children per node (left and right). Nothing to do with roots, edges being bidirectional, or leaf parents." },
         { q: "In-order traversal of a BST gives nodes in:", options: ["Random order", "Reverse sorted order", "Sorted (ascending) order", "Pre-order"], answer: 2, exp: "In-order (Left→Node→Right) on a BST always yields values in ascending sorted order. This is a key property." },
         { q: "Given Inorder = DBEAFCG and Preorder = ABDECFG, what is the Postorder?", options: ["DEBFGCA", "EDBGFCA", "DEBGFCA", "DEFGBCA"], answer: 0, exp: "Root = A (first in preorder). Left subtree has D,B,E. Right has F,C,G. Postorder: D E B F G C A = debfgca." },
         { q: "An AVL tree's balance factor for any node must be:", options: ["0 only", "0 or 1", "-1, 0, or 1", "Any value"], answer: 2, exp: "AVL balance factor = height(left) - height(right). Must be in {-1, 0, 1}. If it becomes ±2, rotations are needed to rebalance." },
-        { q: "When deleting a node with two children from a BST, you replace it with:", options: ["Its parent node", "Its left child directly", "Its inorder successor (smallest in right subtree)", "A null value"], answer: 2, exp: "For 2-child deletion: find the inorder successor (smallest value in the right subtree), copy its value up, then delete the successor node." }
+        { q: "When deleting a node with two children from a BST, you replace it with:", options: ["Its parent node", "Its left child directly", "Its inorder successor (smallest in right subtree)", "A null value"], answer: 2, exp: "For 2-child deletion: find the inorder successor (smallest value in the right subtree), copy its value up, then delete the successor node." },
+        { q: "Given Inorder = F,B,G,A,D,C,E, the Preorder traversal is:", options: ["F,B,G,A,D,C,E", "A,B,F,G,D,C,E", "F,G,B,D,C,E,A", "A,B,C,D,E,F,G"], answer: 1, exp: "Root=A (from tree structure). Inorder: left of A={F,B,G}, right={D,C,E}. Left subtree root=B, F is B's left, G is B's right. Right subtree root=D (or C), etc. Preorder (Root→Left→Right): A,B,F,G,D,C,E. This was Test P17!" },
+        { q: "In Postorder traversal, the root is always the _____ element in the sequence:", options: ["First", "Middle", "Last", "Second-to-last"], answer: 2, exp: "Postorder = Left→Right→Root. The root is always visited LAST. So the last element in a postorder sequence is always the root. Preorder: root is FIRST. This is key for tree reconstruction problems." }
       ],
       's9': [
         { q: "DFS uses which data structure internally?", options: ["Queue", "Array", "Stack", "Hash Table"], answer: 2, exp: "DFS uses a Stack (or the call stack via recursion). BFS uses a Queue. Remember: DFS=Stack, BFS=Queue." },
         { q: "BFS finds the shortest path (by edges) in:", options: ["Weighted directed graphs", "Unweighted graphs", "Negative weight graphs", "Sorted graphs"], answer: 1, exp: "BFS finds shortest path by number of edges in unweighted graphs. For weighted graphs you need Dijkstra." },
         { q: "DFS time complexity with an adjacency list is:", options: ["O(V²)", "O(V + E)", "O(E log V)", "O(V * E)"], answer: 1, exp: "DFS and BFS are both O(V + E) with adjacency lists. O(V²) is the complexity when using an adjacency matrix." },
         { q: "A back edge in DFS of a directed graph indicates:", options: ["A tree edge", "A cycle exists in the graph", "A disconnected component", "An unreachable vertex"], answer: 1, exp: "A back edge points from a node to an ancestor in the DFS tree — this means a cycle exists. Key for cycle detection in directed graphs." },
-        { q: "In-degree of a vertex in a directed graph is:", options: ["Number of edges going out from it", "Number of edges pointing INTO it", "Total degree / 2", "Number of adjacent vertices"], answer: 1, exp: "In-degree = edges pointing INTO the vertex. Out-degree = edges going OUT. Undirected graphs have only 'degree' (no direction)." }
+        { q: "In-degree of a vertex in a directed graph is:", options: ["Number of edges going out from it", "Number of edges pointing INTO it", "Total degree / 2", "Number of adjacent vertices"], answer: 1, exp: "In-degree = edges pointing INTO the vertex. Out-degree = edges going OUT. Undirected graphs have only 'degree' (no direction)." },
+        { q: "A connected undirected graph with n=6 vertices has a maximum of how many edges?", options: ["6", "12", "15", "30"], answer: 2, exp: "Max edges = n(n-1)/2 = 6×5/2 = 15. This is the complete graph K₆. Formula from Practical Assignment Q2a. For n=5: 10. For n=4: 6. For n=3: 3." }
       ],
       's10': [
         { q: "Dijkstra's algorithm is an example of which strategy?", options: ["Dynamic Programming", "Backtracking", "Greedy algorithm", "Divide and Conquer"], answer: 2, exp: "Dijkstra is the prime example of a greedy algorithm — at each step it picks the vertex with minimum known distance." },
         { q: "What kind of graph does Dijkstra's Algorithm NOT work with?", options: ["Weighted", "Directed", "Graphs with negative weights", "Undirected"], answer: 2, exp: "Dijkstra assumes non-negative weights. Negative weights can cause it to produce wrong results. Use Bellman-Ford instead." },
         { q: "Kruskal's algorithm sorts edges in what order?", options: ["Descending weight", "Alphabetical by vertex", "Ascending weight", "No particular order"], answer: 2, exp: "Kruskal sorts all edges in ASCENDING order by weight, then picks the smallest edge that doesn't form a cycle." },
         { q: "Which is true about Kruskal vs Prim?", options: ["Kruskal is better for dense graphs", "Prim can work on disconnected graphs", "Kruskal can work on disconnected graphs", "They have different time complexities"], answer: 2, exp: "Kruskal CAN work on disconnected graphs (produces a forest). Prim cannot — it needs a connected starting vertex." },
-        { q: "Bellman-Ford can handle what that Dijkstra cannot?", options: ["Unweighted graphs", "Negative weight edges", "Undirected graphs", "Very large graphs"], answer: 1, exp: "Bellman-Ford handles negative weight edges (but NOT negative cycles). It relaxes ALL edges V-1 times." }
+        { q: "Bellman-Ford can handle what that Dijkstra cannot?", options: ["Unweighted graphs", "Negative weight edges", "Undirected graphs", "Very large graphs"], answer: 1, exp: "Bellman-Ford handles negative weight edges (but NOT negative cycles). It relaxes ALL edges V-1 times." },
+        { q: "Kruskal's algorithm is most efficient for which type of graph?", options: ["Dense graphs (E close to V²)", "Sparse graphs (E close to V)", "Graphs with negative weights", "Unweighted graphs"], answer: 1, exp: "Kruskal: O(E log E) — dominated by sorting edges. When E is small (sparse), this is fast. Prim with heap: O(E log V) — better for dense graphs. Test P17: Kruskal NOT better for dense graphs." },
+        { q: "Bellman-Ford's total number of edge relaxations is:", options: ["V relaxations", "E relaxations", "(V-1) × E relaxations", "E log V relaxations"], answer: 2, exp: "Bellman-Ford runs V-1 passes. In each pass, it relaxes all E edges. Total = (V-1) × E ≈ V×E. This gives O(VE) time complexity — slower than Dijkstra's O(E log V) but handles negative weights." }
       ],
       's11': [
         { q: "Binary search requires the array to be:", options: ["Unsorted", "Sorted", "All elements unique", "All elements positive"], answer: 1, exp: "Binary search REQUIRES a sorted array. If unsorted, use linear search or sort first then binary search." },
@@ -4301,14 +6155,18 @@ values  = [<span class="nm">70</span>, <span class="nm">80</span>, <span class="
         { q: "Which algorithm has the best worst-case complexity?", options: ["Quick Sort", "Bubble Sort", "Merge Sort", "Selection Sort"], answer: 2, exp: "Merge Sort always runs O(n log n) in all cases. Quick Sort degrades to O(n²) in worst case." },
         { q: "For 1 million elements, which sort is best in general?", options: ["Bubble Sort", "Insertion Sort", "Merge Sort", "Quick Sort"], answer: 3, exp: "Quick Sort is best in practice for large datasets due to O(n log n) average case and low constants/cache efficiency." },
         { q: "Which sorting algorithm is stable?", options: ["Quick Sort", "Heap Sort", "Selection Sort", "Merge Sort"], answer: 3, exp: "Merge Sort is stable — equal elements maintain their original relative order. Quick Sort and Heap Sort are typically unstable." },
-        { q: "Insertion Sort is best for:", options: ["Large random datasets", "Small or nearly sorted datasets", "Reverse-sorted data", "Data stored in linked lists"], answer: 1, exp: "Insertion Sort has O(n) best case for nearly sorted data. For small datasets (<20 elements), its low overhead beats theoretically faster sorts." }
+        { q: "Insertion Sort is best for:", options: ["Large random datasets", "Small or nearly sorted datasets", "Reverse-sorted data", "Data stored in linked lists"], answer: 1, exp: "Insertion Sort has O(n) best case for nearly sorted data. For small datasets (<20 elements), its low overhead beats theoretically faster sorts." },
+        { q: "Heap Sort time complexity in ALL cases (best, average, worst) is:", options: ["O(n²) worst, O(n log n) best", "O(n log n) in all cases", "O(n) best, O(n²) worst", "O(log n) always"], answer: 1, exp: "Heap Sort is always O(n log n) — building the heap takes O(n), then n extract-max operations each O(log n). Unlike Quick Sort, it has no O(n²) worst case. Unlike Merge Sort, it uses O(1) extra space." },
+        { q: "Which factor should you consider when choosing Quick Sort over Merge Sort?", options: ["Data must be strings", "Memory is limited and average-case performance matters most", "Data is nearly sorted", "Stability of sort is required"], answer: 1, exp: "Quick Sort: O(1) extra space (in-place), excellent cache performance, O(n log n) average. Choose Quick Sort for limited memory + average case. Choose Merge Sort when: O(n log n) worst case needed, stable sort needed, or data is too large for cache." }
       ],
       's13': [
         { q: "The 0-1 Knapsack problem is solved using:", options: ["Greedy algorithm", "Dynamic Programming", "Backtracking only", "Divide and Conquer"], answer: 1, exp: "0/1 Knapsack requires Dynamic Programming. Greedy FAILS for 0/1 Knapsack because you can't take fractions — you must consider all combinations." },
         { q: "The Fractional Knapsack is solved using:", options: ["Dynamic Programming", "Backtracking", "Greedy algorithm", "Branch and Bound"], answer: 2, exp: "Fractional knapsack uses greedy — sort by value/weight ratio, take the best ratio items first. Since you can take fractions, greedy always works here." },
         { q: "Items: {value,weight} = {60,20},{50,25},{20,5}. Capacity=40. Max value (fractional)?", options: ["130", "110", "80", "100"], answer: 1, exp: "Ratios: 60/20=3, 50/25=2, 20/5=4. Sort: (20,5,r=4),(60,20,r=3),(50,25,r=2). Take (20,5)=20val,cap=35. Take (60,20)=60val,cap=15. Take 15/25 of (50,25)=30val. Total=20+60+30=110." },
         { q: "Divide and Conquer differs from Dynamic Programming because:", options: ["D&C never uses recursion", "D&C solves overlapping subproblems; DP does not", "DP stores subproblem results (memoization); D&C recomputes them", "DP is always faster"], answer: 2, exp: "Key distinction: DP saves subproblem solutions (bottom-up tabulation or top-down memoization). D&C re-solves subproblems — fine when they don't overlap." },
-        { q: "Backtracking is used for which type of problem?", options: ["Problems with a single optimal solution", "Problems requiring exhaustive search with pruning of dead ends", "Sorting problems only", "Graph shortest-path problems"], answer: 1, exp: "Backtracking explores all possibilities but 'prunes' branches that can't lead to a valid solution. Classic examples: N-Queens, Sudoku, subset sum." }
+        { q: "Backtracking is used for which type of problem?", options: ["Problems with a single optimal solution", "Problems requiring exhaustive search with pruning of dead ends", "Sorting problems only", "Graph shortest-path problems"], answer: 1, exp: "Backtracking explores all possibilities but 'prunes' branches that can't lead to a valid solution. Classic examples: N-Queens, Sudoku, subset sum." },
+        { q: "0/1 Knapsack: capacity=60, weights={20,30,40,70}, values={70,80,90,200}. Max value?", options: ["200", "170", "160", "150"], answer: 2, exp: "Item w=70 > capacity 60, skip. Check combinations: w=20+40=60, v=70+90=160. w=20+30=50, v=70+80=150. w=30+40=70>60, invalid. Best=160. Common ERROR: selecting 170 (takes w=30+40=70 which EXCEEDS capacity 60). Test P16!" },
+        { q: "Items {40,20},{30,10},{20,5}, capacity=20. Max value (FRACTIONAL knapsack)?", options: ["80", "60", "70", "40"], answer: 1, exp: "Ratios: 40/20=2, 30/10=3, 20/5=4. Sort descending: (20,5,r=4),(30,10,r=3),(40,20,r=2). Take (20,5): val+=20, cap=15. Take (30,10): val+=30, cap=5. Take 5/20 of (40,20): val+=10. Total=60. ERROR: 80 comes from taking (40,20) fully first but cap=20 is used up for only value 40. Test P13!" }
       ]
     };
 
